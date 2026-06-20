@@ -107,6 +107,19 @@ body {
   background: rgba(6, 182, 212, 0.2); /* cyan */
   animation-duration: 25s;
 }
+@keyframes borderGlow {
+  0% {
+    filter: brightness(1);
+    transform: rotate(0deg);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1);
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes auroraFloat {
   0% {
