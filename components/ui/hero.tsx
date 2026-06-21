@@ -442,7 +442,7 @@ import Link from "next/link";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
-import ParticlesBackground from "@/components/ui/ParticlesBackground";
+// import ParticlesBackground from "@/components/ui/ParticlesBackground";
 import ParticleImage from "@/components/ui/particle-image";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import LogoLoop from "@/components/ui/LogoLoop"
@@ -568,7 +568,7 @@ export default function Hero() {
   { node: <SiOverleaf />, title: "Overleaf" },
   { node: <SiHackerrank />, title: "HackerRank" },
   ];
-  
+
   const gradients = [
     "from-blue-500 via-cyan-400 to-violet-500",
     "from-violet-500 via-pink-400 to-blue-500",
@@ -613,7 +613,7 @@ export default function Hero() {
 return (
   
   <section className="relative min-h-screen overflow-hidden">
-    <ParticlesBackground />
+    {/* <ParticlesBackground /> */}
 {/* Background Logo Layer */}
 <div className="absolute inset-0 z-[1] overflow-hidden opacity-[0.06] pointer-events-none">
   <div className="absolute top-20 left-0 right-0">
