@@ -445,6 +445,43 @@ import { SiLeetcode } from "react-icons/si";
 import ParticlesBackground from "@/components/ui/ParticlesBackground";
 import ParticleImage from "@/components/ui/particle-image";
 import { ArrowRight, Download, Mail } from "lucide-react";
+import LogoLoop from "@/components/ui/LogoLoop"
+// import {
+//   SiReact,
+//   SiNextdotjs,
+//   SiTypescript,
+//   SiTailwindcss,
+// } from "react-icons/si";
+
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiJavascript,
+  SiPython,
+  SiCplusplus,
+  SiDocker,
+  SiGit,
+  SiGithub,
+  SiMongodb,
+  SiPostgresql,
+  SiMysql,
+  SiPostman,
+  SiPytorch,
+  // SiPowerbi,
+  SiPhp,
+  SiOverleaf,
+  SiHtml5,
+  SiHackerrank,
+  SiFigma,
+  SiExpress,
+  SiAxios,
+
+} from "react-icons/si";
+
+import { Database, Terminal } from "lucide-react";
 
 export default function Hero() {
   const roles = [
@@ -453,7 +490,85 @@ export default function Hero() {
     "Automation Engineer",
     "Full Stack Developer",
   ];
+  const logos = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript />, title: "TypeScript" },
+    { node: <SiTailwindcss />, title: "Tailwind CSS" },
+    { node: <SiJavascript />, title: "JavaScript" },
+      { node: <SiNodedotjs />, title: "Node.js" },
+  { node: <SiPython />, title: "Python" },
+  { node: <SiCplusplus />, title: "C++" },
+  // Custom placeholders
+  {
+    node: (
+      <span className="text-lg font-bold">
+        Cadence SKILL
+      </span>
+    ),
+    title: "Cadence SKILL",
+  },
+    {
+    node: (
+      <span className="text-lg font-bold">
+        TCL
+      </span>
+    ),
+    title: "TCL",
+  },
+    {
+    node: (
+      <span className="text-lg font-bold">
+        Automation
+      </span>
+    ),
+    title: "Automation",
+  },
+    // Extras
+  { node: <SiDocker />, title: "Docker" },
+  { node: <SiGit />, title: "Git" },
+  { node: <SiGithub />, title: "GitHub" },
+  { node: <SiMongodb />, title: "MongoDB (No SQL)" },
+  { node: <SiPostgresql />, title: "PostgreSQL" },
+    { node: <SiMysql />, title: "SQL" },
+    { node: <SiPostman />, title: "Postman" },
+      { node: <SiPhp />, title: "PHP" },
+  { node: <SiHtml5 />, title: "HTML5" },
+  { node: <SiExpress />, title: "Express.js" },
+  { node: <SiAxios />, title: "Axios" },
 
+  { node: <SiFigma />, title: "Figma" },
+  { node: <SiOverleaf />, title: "Overleaf" },
+  { node: <SiHackerrank />, title: "HackerRank" },
+  ];
+
+  const logos_in_bg = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript />, title: "TypeScript" },
+    { node: <SiTailwindcss />, title: "Tailwind CSS" },
+    { node: <SiJavascript />, title: "JavaScript" },
+      { node: <SiNodedotjs />, title: "Node.js" },
+  { node: <SiPython />, title: "Python" },
+  { node: <SiCplusplus />, title: "C++" },
+      // Extras
+  { node: <SiDocker />, title: "Docker" },
+  { node: <SiGit />, title: "Git" },
+  { node: <SiGithub />, title: "GitHub" },
+  { node: <SiMongodb />, title: "MongoDB (No SQL)" },
+  { node: <SiPostgresql />, title: "PostgreSQL" },
+    { node: <SiMysql />, title: "SQL" },
+        { node: <SiPostman />, title: "Postman" },
+          { node: <SiPhp />, title: "PHP" },
+  { node: <SiHtml5 />, title: "HTML5" },
+  { node: <SiExpress />, title: "Express.js" },
+  { node: <SiAxios />, title: "Axios" },
+
+  { node: <SiFigma />, title: "Figma" },
+  { node: <SiOverleaf />, title: "Overleaf" },
+  { node: <SiHackerrank />, title: "HackerRank" },
+  ];
+  
   const gradients = [
     "from-blue-500 via-cyan-400 to-violet-500",
     "from-violet-500 via-pink-400 to-blue-500",
@@ -496,8 +611,33 @@ export default function Hero() {
 
 
 return (
+  
   <section className="relative min-h-screen overflow-hidden">
     <ParticlesBackground />
+{/* Background Logo Layer */}
+<div className="absolute inset-0 z-[1] overflow-hidden opacity-[0.06] pointer-events-none">
+  <div className="absolute top-20 left-0 right-0">
+    <LogoLoop
+      logos={logos_in_bg}
+      speed={25}
+      direction="left"
+      logoHeight={80}
+      gap={150}
+      ariaLabel="Background technologies"
+    />
+  </div>
+
+  <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2">
+    <LogoLoop
+      logos={logos_in_bg}
+      speed={20}
+      direction="right"
+      logoHeight={100}
+      gap={180}
+      ariaLabel="Background technologies"
+    />
+  </div>
+</div>
     {/* tsParticles background */}
     {/* <ParticleImage /> */}
 
@@ -604,6 +744,7 @@ return (
             </Link>
           </div>
         </div>
+        
 
         {/* RIGHT */}
         <div className="order-1 flex justify-center lg:order-2">
@@ -657,6 +798,23 @@ return (
         {/* RIGHT end */}
       </div>
     </div>
+    {/* Logo Loop Bottom */}
+<div className="absolute bottom-0 left-0 right-0 z-20 pb-8">
+  <div className="mx-auto max-w-full">
+    <LogoLoop
+      logos={logos}
+      speed={35}
+      direction="left"
+      logoHeight={33}
+      gap={80}
+      hoverSpeed={15}
+      scaleOnHover
+      fadeOut
+      fadeOutColor="transparent"
+      ariaLabel="Technologies"
+    />
+  </div>
+</div>
   </section>
 );
 }

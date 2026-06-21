@@ -40,7 +40,7 @@ export default function ParticlesBackground() {
       window.particlesJS("particles-js", {
 particles: {
   number: {
-    value: 1300,
+    value: 130,
     density: {
       enable: true,
       value_area: 1000,

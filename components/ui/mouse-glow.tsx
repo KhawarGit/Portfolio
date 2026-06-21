@@ -34,9 +34,17 @@ export default function MouseGlow() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    // const move = (e: MouseEvent) => {
+    //   setPos({ x: e.clientX, y: e.clientY });
+    // };
     const move = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-    };
+  const target = e.target as HTMLElement;
+
+  // ignore glow inside profile card
+  if (target.closest(".no-mouse-glow")) return;
+
+  setPos({ x: e.clientX, y: e.clientY });
+};
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
