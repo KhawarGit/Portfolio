@@ -605,55 +605,56 @@ return (
           </div>
         </div>
 
-{/* RIGHT */}
-<div className="order-1 flex justify-center lg:order-2">
-  <div
-    className="
-      relative
-      transform-gpu
-      [perspective:1200px]
-      animate-[float_6s_ease-in-out_infinite]
-    "
-  >
-    {/* Ambient glow */}
-    <div className="absolute -inset-10 -z-30 rounded-full bg-gradient-to-r from-blue-500/15 via-violet-500/15 to-cyan-500/15 blur-3xl animate-pulse" />
+        {/* RIGHT */}
+        <div className="order-1 flex justify-center lg:order-2">
+          <div
+            className="
+              relative
+              transform-gpu
+              [perspective:1200px]
+              animate-[float_6s_ease-in-out_infinite]
+            "
+          >
+            {/* Ambient glow */}
+            <div className="absolute -inset-10 -z-30 rounded-full bg-gradient-to-r from-blue-500/15 via-violet-500/15 to-cyan-500/15 blur-3xl animate-pulse" />
 
-    {/* Outer soft rotating ring */}
-    <div className="absolute -inset-[3px] rounded-full bg-gradient-to-r from-white/20 via-white/5 to-white/20 dark:from-white/15 dark:via-white/5 dark:to-white/15 animate-[spin_30s_linear_infinite]" />
+            {/* Outer soft rotating ring */}
+            <div className="absolute -inset-[3px] rounded-full bg-gradient-to-r from-white/20 via-white/5 to-white/20 dark:from-white/15 dark:via-white/5 dark:to-white/15 animate-[spin_30s_linear_infinite]" />
 
-    {/* Main gradient ring */}
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/60 via-violet-500/60 to-cyan-500/60 animate-[spin_18s_linear_infinite]" />
+            {/* Main gradient ring */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/60 via-violet-500/60 to-cyan-500/60 animate-[spin_18s_linear_infinite]" />
 
-    {/* Glow highlight */}
-    <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,0.45),transparent)] opacity-40 blur-[2px] animate-[spin_8s_linear_infinite]" />
+            {/* Glow highlight */}
+            <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,0.45),transparent)] opacity-40 blur-[2px] animate-[spin_8s_linear_infinite]" />
 
-    {/* 3D animated profile bubble */}
-    <div
-      className="
-        relative
-        rounded-full
-        p-[2px]
-        backdrop-blur-sm
-        transform-gpu
-        animate-[heroBubble_7s_ease-in-out_infinite]
-        will-change-transform
-      "
-    >
-      <div className="relative h-72 w-72 overflow-hidden rounded-full border border-white/15 bg-white/[0.02] md:h-80 md:w-80 dark:border-white/10 dark:bg-black/[0.02]">
-        {/* Glass reflection */}
-        <div className="pointer-events-none absolute inset-0 z-10 rounded-full bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+            {/* 3D animated profile bubble */}
+            <div
+              className="
+                relative
+                rounded-full
+                p-[2px]
+                backdrop-blur-sm
+                transform-gpu
+                animate-[heroBubble_7s_ease-in-out_infinite]
+                will-change-transform
+              "
+            >
+              <div className="relative h-72 w-72 overflow-hidden rounded-full border border-white/15 bg-white/[0.02] md:h-80 md:w-80 dark:border-white/10 dark:bg-black/[0.02]">
+                {/* Glass reflection */}
+                <div className="pointer-events-none absolute inset-0 z-10 rounded-full bg-gradient-to-br from-white/10 via-transparent to-transparent" />
 
-        {/* Particle image */}
-        <ParticleImage className="h-full w-full rounded-full opacity-95" />
-      </div>
-    </div>
+                {/* Particle image */}
+                <ParticleImage className="h-full w-full rounded-full opacity-95" />
+              </div>
+            </div>
 
-    {/* Floating accent lights */}
-    <div className="absolute -top-3 right-6 h-3 w-3 rounded-full bg-cyan-400/80 blur-[2px] animate-pulse" />
-    <div className="absolute bottom-5 -left-3 h-2 w-2 rounded-full bg-violet-400/80 blur-[1px] animate-pulse" />
-    <div className="absolute left-10 -top-2 h-2 w-2 rounded-full bg-blue-400/70 blur-[1px] animate-ping" />
-  </div>
-</div>
+            {/* Floating accent lights */}
+            <div className="absolute -top-3 right-6 h-3 w-3 rounded-full bg-cyan-400/80 blur-[2px] animate-pulse" />
+            <div className="absolute bottom-5 -left-3 h-2 w-2 rounded-full bg-violet-400/80 blur-[1px] animate-pulse" />
+            <div className="absolute left-10 -top-2 h-2 w-2 rounded-full bg-blue-400/70 blur-[1px] animate-ping" />
+          </div>
+        </div>
+        {/* RIGHT end */}
       </div>
     </div>
   </section>

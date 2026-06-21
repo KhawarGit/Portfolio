@@ -38,150 +38,72 @@ export default function ParticlesBackground() {
       if (!window.particlesJS) return;
 
       window.particlesJS("particles-js", {
-        // particles: {
-        // number: {
-        //     value: 180,
-        //     density: {
-        //     enable: true,
-        //     value_area: 1200,
-        //     },
-        // },
+particles: {
+  number: {
+    value: 1300,
+    density: {
+      enable: true,
+      value_area: 1000,
+    },
+  },
 
-        // color: {
-        //     value: "#3b82f6", // or "#ffffff" to match the original exactly
-        // },
+  color: {
+    value: "#ffffff",
+  },
 
-        // shape: {
-        //     type: "random",
-        // },
+  shape: {
+    type: "circle",
+  },
 
-        // opacity: {
-        //     value: 0.35,
-        //     random: true,
-        // },
+  opacity: {
+    value: 0.5,
+    random: false,
+  },
 
-        // size: {
-        //     value: 3,
-        //     random: true,
-        // },
+  size: {
+    value: 2,
+    random: false,
+  },
 
-        // line_linked: {
-        //     enable: true,
-        //     distance: 220,
-        //     color: "#3b82f6",
-        //     opacity: 0.25,
-        //     width: 1,
-        // },
+  line_linked: {
+    enable: true,
+    distance: 150,
+    color: "#ffffff",
+    opacity: 0.15,
+    width: 1,
+  },
 
-        // move: {
-        //     enable: true,
-        //     speed: 2.5,
-        //     direction: "none",
-        //     random: false,
-        //     straight: false,
-        //     out_mode: "out",
-        //     bounce: false,
-        //     attract: {
-        //     enable: false,
-        //     rotateX: 600,
-        //     rotateY: 1200,
-        //     },
-        // },
-        // },
+  move: {
+    enable: true,
+    speed: 0.8,
+    direction: "none",
+    random: false,
+    straight: false,
+    out_mode: "bounce",
+    bounce: false,
+  },
+},
 
-        particles: {
-          number: {
-            value: 240, // ✅ much fewer particles
-            density: {
-              enable: true,
-              value_area: 1600, // ✅ spreads them out more
-            },
-          },
+interactivity: {
+  detect_on: "window",
 
-          color: {
-            value: "#3b82f6",
-          },
+  events: {
+    onhover: {
+      enable: true,
+      mode: "grab",
+    },
+    resize: true,
+  },
 
-          shape: {
-            type: "circle",
-          },
-
-          opacity: {
-            value: 0.25, // ✅ softer so text stays readable
-            random: true,
-          },
-
-          size: {
-            value: 2.2, // slightly smaller = cleaner UI
-            random: true,
-          },
-
-          line_linked: {
-            enable: true,
-            distance: 260, // ✅ BIGGER connection lines
-            color: "#3b82f6",
-            opacity: 0.18, // very subtle network
-            width: 1,
-          },
-
-          move: {
-            enable: true,
-            speed: 2.0, // slower = premium feel
-            direction: "none",
-            random: true, // more natural movement
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-          },
-        },
-        interactivity: {
-        detect_on: "canvas",
-
-        events: {
-            onhover: {
-            enable: true,
-            mode: "grab",
-            },
-
-            onclick: {
-            enable: true,
-            mode: "push",
-            },
-
-            resize: true,
-        },
-
-        modes: {
-            grab: {
-            distance: 160,
-            line_linked: {
-                opacity: 1,
-            },
-            },
-
-            push: {
-            particles_nb: 4,
-            },
-
-            bubble: {
-            distance: 400,
-            size: 40,
-            duration: 2,
-            opacity: 0.8,
-            speed: 3,
-            },
-
-            repulse: {
-            distance: 200,
-            duration: 0.4,
-            },
-
-            remove: {
-            particles_nb: 2,
-            },
-        },
-        },
-
+  modes: {
+    grab: {
+      distance: 180,
+      line_linked: {
+        opacity: 0.35,
+      },
+    },
+  },
+},
         retina_detect: true,
       });
     };
