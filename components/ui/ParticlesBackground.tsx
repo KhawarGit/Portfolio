@@ -8,7 +8,7 @@ export default function ParticlesBackground() {
         (window as any).particlesJS("particles-js", {
   particles: {
     number: {
-      value: 120,
+      value: 121,
       density: {
         enable: true,
         value_area: 1000,
@@ -23,73 +23,125 @@ export default function ParticlesBackground() {
       type: "circle",
     },
 
-    opacity: {
-      value: 0.8,
-      random: false,
-    },
+    // opacity: {
+    //   value: 0.8,
+    //   random: false,
+    // },
+opacity: {
+  value: 0.75,
+  random: true,
+  animation: {
+    enable: true,
+    speed: 0.4,
+    minimumValue: 0.4,
+    sync: false,
+  },
+},
 
     size: {
       value: 3,
       random: true,
     },
 
+    // line_linked: {
+    //   enable: true,
+    //   distance: 85, // connectRadius
+    //   color: "#60a5fa",
+    //   opacity: 0.35,
+    //   width: 1.3,
+    // },
     line_linked: {
-      enable: true,
-      distance: 85, // connectRadius
-      color: "#60a5fa",
-      opacity: 0.35,
-      width: 1.3,
-    },
+  enable: true,
+  distance: 110,
+  color: "#60a5fa",
+  opacity: 0.25,
+  width: 1.3,
+},
 
+
+    // move: {
+    //   enable: true,
+    //   speed: 4, // matches demo speed
+    //   direction: "none",
+    //   random: true,
+    //   straight: false,
+    //   out_mode: "out",
+    //   bounce: false,
+    //   attract: {
+    //     enable: false,
+    //   },
+    // },
     move: {
+  enable: true,
+  speed: 2.2,
+  direction: "none",
+  random: true,
+  straight: false,
+  out_mode: "out",
+  bounce: false,
+  attract: {
+    enable: false,
+  },
+},
+  },
+
+//   interactivity: {
+//     detect_on: "window",
+
+//     events: {
+//       onhover: {
+//         enable: true,
+//         mode: "repulse",
+//       },
+
+//       onclick: {
+//         enable: false,
+//       },
+
+//       resize: true,
+//     },
+
+//     modes: {
+//       repulse: {
+//         distance: 45,
+//         duration: 0.2,
+//       },
+    
+
+//       grab: {
+//         distance: 90,
+//         line_linked: {
+//           opacity: 0.5,
+//         },
+//       },
+
+//       push: {
+//         particles_nb: 4,
+//       },
+//     },
+//   },
+
+interactivity: {
+  detect_on: "window",
+
+  events: {
+    onhover: {
       enable: true,
-      speed: 4, // matches demo speed
-      direction: "none",
-      random: true,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false,
-      },
+      mode: "repulse",
     },
+    onclick: {
+      enable: false,
+    },
+    resize: true,
   },
 
-  interactivity: {
-    detect_on: "window",
-
-    events: {
-      onhover: {
-        enable: true,
-        mode: "repulse",
-      },
-
-      onclick: {
-        enable: false,
-      },
-
-      resize: true,
-    },
-
-    modes: {
-      repulse: {
-        distance: 45,
-        duration: 0.2,
-      },
-
-      grab: {
-        distance: 90,
-        line_linked: {
-          opacity: 0.5,
-        },
-      },
-
-      push: {
-        particles_nb: 4,
-      },
+  modes: {
+    repulse: {
+      distance: 60,
+      duration: 0.8,
     },
   },
-
+},
   retina_detect: true,
 });
     }
