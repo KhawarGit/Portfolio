@@ -386,7 +386,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     filter: 'brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5)',
     animation: 'pc-holo-bg 18s linear infinite',
     animationPlayState: 'running' as const,
-    mixBlendMode: 'color-dodge' as const,
+    mixBlendMode: 'soft-light' as const,
     transform: 'translate3d(0, 0, 1px)',
     overflow: 'hidden' as const,
     zIndex: 3,

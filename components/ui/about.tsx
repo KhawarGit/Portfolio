@@ -257,11 +257,11 @@ export default function About() {
           <div className="flex justify-center lg:justify-end lg:-translate-x-4">
             <ProfileCard
               name="Khawar Khan"
-              title="Full Stack Developer"
-              handle="khawarkhan"
+              title="Software Engineer"
+              handle="KhawarKhan"
               status="Available for work"
               avatarUrl="/images/profile.jpeg"
-              miniAvatarUrl="/images/profile.jpeg"
+              miniAvatarUrl="/images/Mini-avatar.jpeg"
               contactText="Hire Me"
               showUserInfo={true}
               enableTilt={true}
