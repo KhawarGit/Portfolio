@@ -71,7 +71,7 @@ export default function RootLayout({
           {/* <CanvasCursor /> */}
           {/* <MouseGlow /> */}
           {/* <AuroraBackground /> */}
-<SplashCursor
+{/* <SplashCursor
   DENSITY_DISSIPATION={4}
   VELOCITY_DISSIPATION={2.8}
   PRESSURE={0.12}
@@ -82,6 +82,18 @@ export default function RootLayout({
   SHADING
   RAINBOW_MODE={false}
   COLOR="#7C3AED"
+/> */}
+<SplashCursor
+  DENSITY_DISSIPATION={4}
+  VELOCITY_DISSIPATION={2.7}
+  PRESSURE={0.11}
+  CURL={1.5}
+  SPLAT_RADIUS={0.10}
+  SPLAT_FORCE={2600}
+  COLOR_UPDATE_SPEED={5}
+  SHADING
+  RAINBOW_MODE={false}
+  COLOR="#8B5CF6"
 />
           {children}
         </ThemeProviderWrapper>
