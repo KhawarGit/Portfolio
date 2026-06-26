@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import MouseGlow from "@/components/ui/mouse-glow";
+// import MouseGlow from "@/components/ui/mouse-glow";
 // import AuroraBackground from "@/components/ui/aurora-background";
+// import CanvasCursor from "@/components/ui/CanvasCursor";
+import SplashCursor from "@/components/ui/SplashCursor";
+
 import { ThemeProviderWrapper } from "@/components/ui/theme-provider";
 
 import "./globals.css";
@@ -11,6 +14,7 @@ const inter = Inter({
   display: "swap",
   variable: "--font-sans",
 });
+
 
 export const metadata: Metadata = {
   title: {
@@ -64,8 +68,21 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProviderWrapper> 
-          <MouseGlow />
+          {/* <CanvasCursor /> */}
+          {/* <MouseGlow /> */}
           {/* <AuroraBackground /> */}
+<SplashCursor
+  DENSITY_DISSIPATION={4}
+  VELOCITY_DISSIPATION={2.8}
+  PRESSURE={0.12}
+  CURL={1.8}
+  SPLAT_RADIUS={0.11}
+  SPLAT_FORCE={2800}
+  COLOR_UPDATE_SPEED={6}
+  SHADING
+  RAINBOW_MODE={false}
+  COLOR="#7C3AED"
+/>
           {children}
         </ThemeProviderWrapper>
       </body>
