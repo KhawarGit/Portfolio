@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
-import ParticlesBackground from "@/components/ui/ParticlesBackground";
+import ParticleBackground from "@/components/ui/ParticlesBackground";
 import ParticleImage from "@/components/ui/particle-image";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import LogoLoop from "@/components/ui/LogoLoop"
@@ -210,7 +210,22 @@ return (
 
     {/* Grid overlay */}
     <div className="absolute inset-0 z-[1] grid-background pointer-events-none" />
-    <ParticlesBackground />
+    {/* <ParticlesBackground /> */}
+    {/* Particle Background */}
+<div className="absolute inset-0 z-[5]">
+  {/* Particle Background */}
+  {/* Particle Background */}
+  <ParticleBackground
+
+    variant="cube"
+    colorScheme="blue"
+    count={100}
+    speed={4}
+    connectRadius={97}
+    interactive
+    backgroundColor="#050a14"
+  />
+</div>
 
     {/* Gradient blobs */}
     <div className="absolute left-10 top-24 z-[2] h-72 w-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />

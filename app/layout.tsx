@@ -83,7 +83,7 @@ export default function RootLayout({
   RAINBOW_MODE={false}
   COLOR="#7C3AED"
 /> */}
-<SplashCursor
+{/* <SplashCursor
   DENSITY_DISSIPATION={4}
   VELOCITY_DISSIPATION={2.7}
   PRESSURE={0.11}
@@ -94,7 +94,7 @@ export default function RootLayout({
   SHADING
   RAINBOW_MODE={false}
   COLOR="#8B5CF6"
-/>
+/> */}
           {children}
         </ThemeProviderWrapper>
       </body>
