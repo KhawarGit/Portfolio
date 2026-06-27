@@ -287,29 +287,227 @@ return (
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start">
-            <Link
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg dark:bg-white dark:text-black"
-            >
-              View Projects <ArrowRight size={18} />
-            </Link>
+<Link
+  href="#projects"
+  className="
+    group
+    relative
+    inline-flex
+    overflow-hidden
+    rounded-xl
+    p-[1px]
 
-            <Link
-              href="/resume.pdf"
-              target="_blank"
-              className="inline-flex items-center gap-2 rounded-xl border px-6 py-3 font-medium transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-100 dark:hover:bg-neutral-900"
-            >
-              <Download size={18} />
-              Resume
-            </Link>
+bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
 
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-xl border px-6 py-3 font-medium transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-100 dark:hover:bg-neutral-900"
-            >
-              <Mail size={18} />
-              Contact
-            </Link>
+    bg-[length:300%_300%]
+    animate-[gradientMove_5s_linear_infinite]
+
+    transition-all
+    duration-300
+
+    hover:scale-105
+    hover:-translate-y-1
+    hover:[transform:perspective(700px)_rotateX(8deg)_rotateY(-8deg)]
+    hover:shadow-[0_0_20px_rgba(59,130,246,.35),0_0_45px_rgba(139,92,246,.25)]
+  "
+>
+  {/* Shine Sweep */}
+  <span
+    className="
+      absolute
+      inset-0
+      -translate-x-full
+      skew-x-12
+      bg-gradient-to-r
+      from-transparent
+      via-white/30
+      to-transparent
+      transition-transform
+      duration-700
+      group-hover:translate-x-[180%]
+    "
+  />
+
+  {/* Inner */}
+  <span
+    className="
+      relative
+      flex
+      items-center
+      gap-2
+      rounded-[11px]
+      bg-[#050a14]/95
+      backdrop-blur-xl
+      px-6
+      py-3
+      text-white
+      transition-colors
+      duration-300
+      group-hover:bg-[#0b1325]
+    "
+  >
+    View Projects
+
+    <ArrowRight
+      size={18}
+      className="
+        transition-all
+        duration-300
+        group-hover:translate-x-2
+        group-hover:scale-125
+      "
+    />
+  </span>
+</Link>
+
+<Link
+  href="/resume.pdf"
+  target="_blank"
+  className="
+    group
+    relative
+    inline-flex
+    items-center
+    gap-2
+    overflow-hidden
+    rounded-xl
+    border
+    border-violet-500/40
+    bg-background/70
+    px-6
+    py-3
+    font-medium
+    backdrop-blur-md
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:scale-105
+    hover:border-violet-400
+    hover:shadow-[0_0_25px_rgba(139,92,246,0.45)]
+    hover:[transform:perspective(700px)_rotateX(8deg)_rotateY(-8deg)]
+  "
+>
+  {/* Animated Gradient Border */}
+  <span
+    className="
+      absolute
+      inset-0
+      -z-10
+      rounded-xl
+      bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4,#3b82f6)]
+      bg-[length:250%_250%]
+      opacity-0
+      blur-md
+      transition-opacity
+      duration-500
+      group-hover:opacity-100
+      animate-[gradient_5s_linear_infinite]
+    "
+  />
+
+  {/* Shine */}
+  <span
+    className="
+      absolute
+      inset-0
+      -translate-x-full
+      bg-gradient-to-r
+      from-transparent
+      via-white/20
+      to-transparent
+      group-hover:translate-x-full
+      transition-transform
+      duration-700
+    "
+  />
+
+  <Download
+    size={18}
+    className="
+      transition-all
+      duration-300
+      group-hover:-translate-y-1
+      group-hover:scale-125
+      group-hover:rotate-12
+    "
+  />
+
+  Resume
+</Link>
+
+<Link
+  href="#contact"
+  className="
+    group
+    relative
+    inline-flex
+    items-center
+    gap-2
+    overflow-hidden
+    rounded-xl
+    border
+    border-cyan-500/40
+    bg-background/70
+    px-6
+    py-3
+    font-medium
+    backdrop-blur-md
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:scale-105
+    hover:border-cyan-400
+    hover:shadow-[0_0_25px_rgba(34,211,238,0.45)]
+    hover:[transform:perspective(700px)_rotateX(8deg)_rotateY(-8deg)]
+  "
+>
+  {/* Animated Gradient Border */}
+  <span
+    className="
+      absolute
+      inset-0
+      -z-10
+      rounded-xl
+      bg-[linear-gradient(120deg,#06b6d4,#3b82f6,#8b5cf6,#06b6d4)]
+      bg-[length:250%_250%]
+      opacity-0
+      blur-md
+      transition-opacity
+      duration-500
+      group-hover:opacity-100
+      animate-[gradient_5s_linear_infinite]
+    "
+  />
+
+  {/* Shine */}
+  <span
+    className="
+      absolute
+      inset-0
+      -translate-x-full
+      bg-gradient-to-r
+      from-transparent
+      via-white/20
+      to-transparent
+      group-hover:translate-x-full
+      transition-transform
+      duration-700
+    "
+  />
+
+  <Mail
+    size={18}
+    className="
+      transition-all
+      duration-300
+      group-hover:translate-y-[-2px]
+      group-hover:scale-125
+      group-hover:rotate-6
+    "
+  />
+
+  Contact
+</Link>
           </div>
 
 <div className="mt-8 flex flex-wrap justify-center gap-5 lg:justify-start">
