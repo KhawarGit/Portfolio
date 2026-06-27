@@ -312,23 +312,106 @@ return (
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-5 text-2xl lg:justify-start">
-            <Link href="https://github.com/KhawarGit" target="_blank">
-              <FaGithub />
-            </Link>
+<div className="mt-8 flex flex-wrap justify-center gap-5 lg:justify-start">
 
-            <Link href="https://www.linkedin.com/in/khawar-khan/" target="_blank">
-              <FaLinkedin />
-            </Link>
+  <Link
+    href="https://github.com/KhawarGit"
+    target="_blank"
+    className="group relative"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500 to-cyan-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
 
-            <Link href="mailto:khawarkhanibnmuhammadasghar@gmail.com">
-              <Mail size={22} />
-            </Link>
+    <div className="
+      relative
+      flex h-14 w-14 items-center justify-center
+      rounded-2xl
+      border border-white/10
+      bg-white/5
+      backdrop-blur-xl
+      transition-all duration-500
+      group-hover:-translate-y-2
+      group-hover:rotate-6
+      group-hover:border-cyan-400/60
+      group-hover:shadow-[0_0_30px_rgba(34,211,238,.35)]
+    ">
+      <FaGithub className="text-2xl transition-all duration-500 group-hover:scale-125 group-hover:text-cyan-400" />
+    </div>
+  </Link>
 
-            <Link href="https://leetcode.com/" target="_blank">
-              <SiLeetcode />
-            </Link>
-          </div>
+  <Link
+    href="https://www.linkedin.com/in/khawar-khan/"
+    target="_blank"
+    className="group relative"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
+
+    <div className="
+      relative
+      flex h-14 w-14 items-center justify-center
+      rounded-2xl
+      border border-white/10
+      bg-white/5
+      backdrop-blur-xl
+      transition-all duration-500
+      group-hover:-translate-y-2
+      group-hover:-rotate-6
+      group-hover:border-blue-400/60
+      group-hover:shadow-[0_0_30px_rgba(59,130,246,.35)]
+    ">
+      <FaLinkedin className="text-2xl transition-all duration-500 group-hover:scale-125 group-hover:text-blue-400" />
+    </div>
+  </Link>
+
+  <Link
+    href="mailto:khawarkhanibnmuhammadasghar@gmail.com"
+    className="group relative"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
+
+    <div className="
+      relative
+      flex h-14 w-14 items-center justify-center
+      rounded-2xl
+      border border-white/10
+      bg-white/5
+      backdrop-blur-xl
+      transition-all duration-500
+      group-hover:-translate-y-2
+      group-hover:border-emerald-400/60
+      group-hover:shadow-[0_0_30px_rgba(16,185,129,.35)]
+    ">
+      <Mail
+        size={24}
+        className="transition-all duration-500 group-hover:scale-125 group-hover:text-emerald-400"
+      />
+    </div>
+  </Link>
+
+  <Link
+    href="https://leetcode.com/"
+    target="_blank"
+    className="group relative"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
+
+    <div className="
+      relative
+      flex h-14 w-14 items-center justify-center
+      rounded-2xl
+      border border-white/10
+      bg-white/5
+      backdrop-blur-xl
+      transition-all duration-500
+      group-hover:-translate-y-2
+      group-hover:rotate-6
+      group-hover:border-orange-400/60
+      group-hover:shadow-[0_0_30px_rgba(249,115,22,.35)]
+    ">
+      <SiLeetcode className="text-2xl transition-all duration-500 group-hover:scale-125 group-hover:text-orange-400" />
+    </div>
+  </Link>
+
+</div>
         </div>
         
 
