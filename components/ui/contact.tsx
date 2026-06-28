@@ -4,8 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Mail, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { toast } from "sonner";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
+  const [sending, setSending] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -18,14 +22,19 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
-    console.log("Form submitted:", form);
-    alert("Message sent successfully (demo)");
+  setSending(true);
 
+  setTimeout(() => {
     setForm({ name: "", email: "", message: "" });
-  };
+
+    toast.success("Message sent successfully 🚀");
+
+    setSending(false);
+  }, 1200);
+};
 
   return (
     <section
@@ -139,8 +148,35 @@ export default function Contact() {
               />
 
               {/* PREMIUM BUTTON */}
+<AnimatePresence>
+  {sending && (
+    <motion.div
+      initial={{
+        opacity: 0,
+        scale: 0.5,
+        x: 0,
+        y: 0,
+      }}
+      animate={{
+        opacity: [0, 1, 1, 0],
+        x: window.innerWidth * 0.6,
+        y: -window.innerHeight * 0.9,
+        rotate: 40,
+        scale: 1.4,
+      }}
+      transition={{
+        duration: 1.4,
+        ease: "easeInOut",
+      }}
+      className="fixed bottom-24 left-1/2 z-50 text-blue-500"
+    >
+      <Send size={30} />
+    </motion.div>
+  )}
+</AnimatePresence>
               <button
                 type="submit"
+                disabled={sending}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-violet-600 to-blue-600 px-6 py-3 font-medium text-white shadow-md transition hover:scale-[1.02] hover:shadow-xl"
               >
                 Send Message

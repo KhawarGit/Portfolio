@@ -82,7 +82,9 @@ const items = [
 ];
 
   return (
-    <section id="timeline" className="relative py-24">
+    // <section id="timeline" className="relative py-24">
+    <section id="timeline" className="relative py-24 overflow-x-hidden">
+
       <div className="container-width">
 
         {/* HEADER */}
@@ -96,10 +98,13 @@ const items = [
         </div>
 
 
-        <div className="relative mt-20 space-y-20">
+        {/* <div className="relative mt-20 space-y-20"> */}
+        <div className="relative mt-20 space-y-20 overflow-x-clip">
         {/* CENTER LINE */}
  {/* Apple Timeline */}
-<div className="absolute left-1/2 top-0 h-full -translate-x-1/2">
+{/* <div className="absolute left-1/2 top-0 h-full -translate-x-1/2"> */}
+{/* <div className="absolute left-1/2 top-10 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none"> */}
+<div className="absolute left-1/2 top-0 h-full -translate-x-1/2 pointer-events-none">
 
   {/* Glow */}
   <div className="
@@ -164,7 +169,9 @@ ease:"easeOut"
               
                 viewport={{ once: false, amount: 0.45 }}
                
-                className="grid grid-cols-1 lg:grid-cols-2 items-center relative"
+                // className="grid grid-cols-1 lg:grid-cols-2 items-center relative"
+
+                className="grid grid-cols-1 lg:grid-cols-2 items-center relative overflow-x-hidden will-change-transform"
               >
 
                 {/* DOT */}
@@ -323,7 +330,7 @@ function Card({ item }: any) {
 <motion.div
 whileHover={{
     y:-8,
-    scale:1.015,
+    scale:1.01,
 }}
 
 transition={{
@@ -347,7 +354,8 @@ hover:shadow-[0_30px_80px_rgba(59,130,246,.18)]
         <div
 className="
 absolute
--inset-2
+inset-0
+pointer-events-none
 
 rounded-3xl
 
@@ -385,7 +393,7 @@ group-hover:opacity-100
 <div
 className="
 absolute
--inset-12
+inset-0
 
 opacity-0
 
@@ -404,6 +412,7 @@ from-blue-500/10
 via-violet-500/10
 
 to-cyan-500/10
+pointer-events-none
 "/>
 
 <div
