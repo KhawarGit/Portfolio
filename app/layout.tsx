@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import MouseGlow from "@/components/ui/mouse-glow";
+import MouseGlow from "@/components/ui/mouse-glow";
 // import AuroraBackground from "@/components/ui/aurora-background";
-// import CanvasCursor from "@/components/ui/CanvasCursor";
+import CanvasCursor from "@/components/ui/CanvasCursor";
 import SplashCursor from "@/components/ui/SplashCursor";
 import { Toaster } from "sonner";
 
@@ -84,7 +84,7 @@ export default function RootLayout({
   RAINBOW_MODE={false}
   COLOR="#7C3AED"
 /> */}
-{/* <SplashCursor
+<SplashCursor
   DENSITY_DISSIPATION={4}
   VELOCITY_DISSIPATION={2.7}
   PRESSURE={0.11}
@@ -95,7 +95,7 @@ export default function RootLayout({
   SHADING
   RAINBOW_MODE={false}
   COLOR="#8B5CF6"
-/> */}
+/>
           {children}
           <Toaster position="top-right" richColors />
         </ThemeProviderWrapper>
