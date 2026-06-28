@@ -1307,7 +1307,7 @@ export default function CertificationsPreview() {
 
         {/* CONTROLS */}
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-visible py-10"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -1361,14 +1361,39 @@ export default function CertificationsPreview() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 flex justify-center">
-          <Link
-            href="/certifications"
-            className="rounded-full border border-violet-500/30 bg-violet-500/10 px-6 py-3 text-sm text-violet-300 hover:bg-violet-500/20"
-          >
-            View All Certifications →
-          </Link>
-        </div>
+<div className="mt-12 flex justify-center">
+  <Link
+    href="/certifications"
+    className="
+      group relative overflow-hidden
+      rounded-full
+      border border-violet-500/20
+      bg-gradient-to-r from-violet-500/10 via-cyan-500/10 to-blue-500/10
+      px-7 py-3
+      text-sm text-violet-200
+      backdrop-blur-xl
+      transition-all duration-300
+      hover:scale-[1.05]
+      hover:border-violet-400/40
+    "
+  >
+    {/* animated shine */}
+    <span className="
+      absolute inset-0 -translate-x-full
+      bg-gradient-to-r from-transparent via-white/10 to-transparent
+      group-hover:translate-x-full
+      transition-transform duration-700
+    " />
+
+    <span className="relative flex items-center gap-2">
+      View All Certifications
+      <span className="transition-transform group-hover:translate-x-1">
+        →
+      </span>
+    </span>
+  </Link>
+</div>
+
       </div>
     </section>
   );
@@ -1398,7 +1423,17 @@ function Card({ cert }: { cert: Certification }) {
 
   return (
     <motion.div
-      whileHover={{ y: -8 }}
+       whileHover={{
+    y: -12,
+    rotateX: 2,
+    rotateY: -2,
+    scale: 1.02,
+  }}
+    transition={{
+    type: "spring",
+    stiffness: 200,
+    damping: 18,
+  }}
       className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
     >
       <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100 bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-blue-500/10" />
@@ -1437,6 +1472,19 @@ function Card({ cert }: { cert: Certification }) {
           <div
             className={`absolute inset-0 rounded-xl blur-xl scale-150 bg-gradient-to-r ${color} opacity-40`}
           />
+          {/* Shine sweep */}
+<div className="
+  absolute inset-0 opacity-0 group-hover:opacity-100
+  transition-opacity duration-300
+">
+  <div className="
+    absolute -left-1/2 top-0 h-full w-1/2
+    rotate-12
+    bg-gradient-to-r from-transparent via-white/10 to-transparent
+    group-hover:translate-x-[220%]
+    transition-transform duration-1000
+  " />
+</div>
 
           {/* Badge */}
           <div
@@ -1463,25 +1511,44 @@ function Card({ cert }: { cert: Certification }) {
   </motion.div>
 )}
 
-      <div className="relative h-[190px]">
-        <Image
-          src={cert.image}
-          alt={cert.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+<motion.div
+  className="relative h-[190px] overflow-hidden"
+  whileHover={{
+    scale: 1.08,
+  }}
+  transition={{ duration: 0.5 }}
+>
+  <motion.div
+    className="absolute inset-0"
+    whileHover={{ scale: 1.1 }}
+    transition={{ duration: 0.6 }}
+  >
+    <Image
+      src={cert.image}
+      alt={cert.title}
+      fill
+      className="object-cover"
+    />
+  </motion.div>
+</motion.div>
 
       <div className="relative p-5">
-        <span className="text-xs text-cyan-300">
+        {/* <span className="text-xs text-cyan-300"> */}
+        <motion.span
+  whileHover={{ scale: 1.05 }}
+  className="inline-flex text-xs text-cyan-300 transition"
+>
           {cert.categoryTitle}
-        </span>
+        {/* </span> */}
+        </motion.span>
 
         <h3 className="mt-3 text-lg font-semibold">
           {cert.title}
         </h3>
 
-        <p className="text-sm text-neutral-400">{cert.issuer}</p>
+        {/* <p className="text-sm text-neutral-400"> */}
+        <p className="text-sm text-neutral-400 transition group-hover:text-neutral-200">
+          {cert.issuer}</p>
 
         <p className="mt-2 text-sm text-neutral-500">
           {cert.description}
