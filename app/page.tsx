@@ -10,6 +10,7 @@ import Experience from "@/components/ui/experience";
 import Contact from "@/components/ui/contact";
 import Footer from "@/components/ui/footer";
 import Certifications from "@/components/ui/certifications";
+import Timeline from "@/components/ui/education";
 // import SectionWrapper from "@/components/ui/section-wrapper";
 import ShapeGrid from "@/components/ui/shape-gird";
 
@@ -37,7 +38,9 @@ export default function HomePage() {
       <About />
       <Skills />
       <Projects />
-      <Experience />
+      {/* <Experience /> */}
+      {/* below time line for education */}
+      <Timeline />
       <Certifications />
       <Contact />
     </div>
