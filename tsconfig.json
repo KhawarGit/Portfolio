@@ -30,6 +30,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "**/*.d.ts"
-  ],
+, "components/ui/certificationPrism.tsx"  ],
   "exclude": ["node_modules"]
 }
