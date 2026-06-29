@@ -2695,6 +2695,8 @@ import {
   type Certification,
 } from "@/data/certifications";
 
+import CertificationUmbrellaDashboard from "@/components/ui/certificationUmbrellaDashboard";
+
 const logoThemes = [
   {
     aura: "from-cyan-400 via-blue-500 to-indigo-500",
@@ -2766,6 +2768,8 @@ export default function CertificationsPage() {
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10">
 
+        
+
         {/* HEADER */}
         <div className="mb-28 text-center">
           <motion.h1 
@@ -2785,7 +2789,7 @@ export default function CertificationsPage() {
             A curated portfolio of validated expertise showcasing structured continuous learning across distributed clouds, architectures, and modern frameworks.
           </motion.p>
         </div>
-
+<CertificationUmbrellaDashboard/>
         {/* CATEGORIES */}
         <div className="space-y-36">
           {certificationCategories.map((category, categoryIndex) => {
