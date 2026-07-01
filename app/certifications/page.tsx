@@ -2694,7 +2694,8 @@ import {
   certificationCategories,
   type Certification,
 } from "@/data/certifications";
-import ShapeGrid from "@/components/ui/shape-gird";
+// import ShapeGrid from "@/components/ui/shape-gird";
+import ShapeGridOutline from "@/components/ui/outline-shape-grid";
 
 import CertificationUmbrellaDashboard from "@/components/ui/certificationUmbrellaDashboard";
 
@@ -2759,18 +2760,22 @@ export default function CertificationsPage() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-neutral-950 py-24 text-white selection:bg-white/10">
       {/* Vercel/Apple Style Grid Floor Background */}
+      <div className="relative">
           <div className="absolute inset-0">
-      <ShapeGrid
-        speed={0}
-        shape="hexagon"
-        direction="diagonal"
-        squareSize={50}
-        borderColor="rgba(99,102,241,0.15)"
-        hoverFillColor="rgba(99,102,241,0.25)"
-        hoverTrailAmount={5}
+      <ShapeGridOutline
+shape="hexagon"
+          variant="outline"
+          speed={0}
+          direction="diagonal"
+          borderColor="rgba(105, 170, 255, 0.2)"
+          squareSize={45}
+          borderWidth={1.2}
+          glow={true}
+          glowColor="rgba(80, 220, 255, 0.15)"
+          hoverTrailAmount={6}
       />
     </div>
-    
+
       <div className="pointer-events-none fixed inset-0 opacity-[0.04]" aria-hidden="true">
         <div className="h-full w-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:24px_24px]" />
       </div>
@@ -3154,6 +3159,7 @@ export default function CertificationsPage() {
           })}
         </div>
       </div>
+    </div>
     </section>
   );
 }
