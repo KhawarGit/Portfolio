@@ -2789,7 +2789,12 @@ export default function CertificationsPage() {
             A curated portfolio of validated expertise showcasing structured continuous learning across distributed clouds, architectures, and modern frameworks.
           </motion.p>
         </div>
+        <div data-no-cursor
+        onPointerMove={(e) => e.stopPropagation()} 
+  onMouseMove={(e) => e.stopPropagation()}
+        >
 <CertificationUmbrellaDashboard/>
+</div>
         {/* CATEGORIES */}
         <div className="space-y-36">
           {certificationCategories.map((category, categoryIndex) => {

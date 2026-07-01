@@ -75,6 +75,21 @@ export default function SplashCursor({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+  const handleMouseMove = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+
+    // Ignore dashboard
+    if (target.closest("[data-no-cursor]")) {
+      return;
+    }
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+
+  return () => window.removeEventListener("mousemove", handleMouseMove);
+}, []);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -99,6 +114,9 @@ export default function SplashCursor({
       RAINBOW_MODE,
       COLOR
     };
+
+
+
 
     const { gl, ext } = getWebGLContext(canvas);
     if (!gl || !ext) return;
@@ -1299,6 +1317,7 @@ export default function SplashCursor({
     RAINBOW_MODE,
     COLOR
   ]);
+
 
   return (
     <div className="fixed top-0 left-0 z-50 pointer-events-none w-full h-full">
