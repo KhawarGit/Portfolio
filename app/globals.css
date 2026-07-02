@@ -59,6 +59,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -67,8 +68,11 @@ body {
   color: hsl(var(--foreground));
   font-family: var(--font-sans), sans-serif;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+
 }
+
 
 /* Aurora blobs */
 
