@@ -5661,7 +5661,7 @@ export default function Skills() {
         {/* Header */}
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold md:text-4xl tracking-tight">
-            Skills & <span className="text-indigo-600 dark:text-indigo-400">Ecosystem</span>
+            Skills & <span className="text-gradient">Ecosystem</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
             A granular overview of my technical stack, architectural flows, and operational workflows structured around engineering evidence.
