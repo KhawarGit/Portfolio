@@ -3184,6 +3184,456 @@
 
 
 
+// "use client";
+
+// import React, { useState, useRef, useMemo } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+// import { FaGithub } from "react-icons/fa";
+// import HoverCard from "@/components/ui/hover-card";
+// import ProjectScene from "@/components/ui/project-scene";
+
+// export default function Projects() {
+//   const projects = [
+//     {
+//       title: "Portfolio Website",
+//       description:
+//         "A modern portfolio built with Next.js, Tailwind CSS, Framer Motion and TypeScript.",
+//       scene: "car",
+//       tech: ["Next.js", "Tailwind", "TypeScript"],
+//       highlights: ["Framer Motion", "Responsive Design", "SEO Optimized"],
+//       github: "https://github.com/your-username/portfolio",
+//       live: "https://your-portfolio.com",
+//       slug: "/blog/portfolio-website", 
+//       image: "/images/projects/portfolio.png",
+//       status: "Live",
+//       year: "2026",
+//       metrics: ["99.9% Uptime", "100 LightHouse", "SEO Optimized"],
+//     },
+//     {
+//       title: "PCB Simulation & Test Automation Suite",
+//       description:
+//         "Engineered an enterprise-grade automation platform for Advantest to optimize hardware verification workflows and reduce repetitive manual hardware checks.",
+//       scene: "chip",
+//       tech: ["Python", "TCL", "PostgreSQL", "Docker"],
+//       highlights: ["Hardware Automation", "Workflow Optimization", "Custom Analytics"],
+//       github: null, 
+//       live: null,
+//       slug: "/blog/advantest-automation-case-study", 
+//       image: "/images/projects/advantest-automation.png", 
+//       status: "Private",
+//       year: "2025",
+//       metrics: ["-72% Test Duration", "50+ Workflows", "MNC Deployment"],
+//     },
+//     {
+//       title: "E-commerce Platform",
+//       description:
+//         "Full-stack ecommerce platform with authentication and Stripe payments.",
+//       scene: "server",
+//       tech: ["Next.js", "PostgreSQL", "Stripe"],
+//       highlights: ["Authentication", "Payments", "Database Optimization"],
+//       github: null,
+//       live: null,
+//       slug: "/blog/ecommerce-platform-case-study",
+//       image: "/images/projects/ecommerce.png",
+//       status: "Private",
+//       year: "2025",
+//     },
+//     {
+//       title: "Automation Tool",
+//       description:
+//         "Backend automation system for repetitive workflows and engineering processes.",
+//       scene: "robot",
+//       tech: ["Node.js", "Express", "MongoDB"],
+//       highlights: ["CRON Jobs", "REST APIs", "Error Logging"],
+//       github: "https://github.com/your-username/automation",
+//       live: null,
+//       slug: "https://github.com/your-username/automation#readme",
+//       image: "/images/projects/automation.png",
+//       status: "Open Source",
+//       year: "2025",
+//       metrics: ["12k Active Users", "100% Free Core", "MIT Licensed"],
+//     },
+//   ];
+
+//   const productionProjects = projects.filter(p => p.status === "Live" || p.status === "Private");
+//   const openSourceProjects = projects.filter(p => p.status === "Open Source" || p.status === "Prototype");
+
+//   // Stagger container setup for whole initial sections
+//   const containerVariants = {
+//     hidden: { opacity: 0 },
+//     show: {
+//       opacity: 1,
+//       transition: {
+//         staggerChildren: 0.15,
+//       },
+//     },
+//   };
+
+//   return (
+//     <section id="projects" className="section-padding py-24 bg-neutral-50/50 dark:bg-neutral-950/20 overflow-x-clip relative">
+//       {/* PREMIUM BACKGROUND AMBIENT ORBS */}
+//       <div className="absolute top-1/4 left-10 w-96 h-96 bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-[120px] pointer-events-none animate-[pulse_12s_ease-in-out_infinite]" />
+//       <div className="absolute bottom-1/4 right-10 w-[450px] h-[450px] bg-cyan-500/5 dark:bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none animate-[pulse_16s_ease-in-out_infinite]" />
+
+//       <div className="container-width px-4 relative z-10">
+//         {/* HEADER */}
+//         <div className="mb-16 text-center">
+//           <h2 className="text-4xl font-bold tracking-tight">
+//             Featured <span className="text-gradient">Projects</span>
+//           </h2>
+//           <p className="mx-auto mt-4 max-w-2xl text-neutral-500 dark:text-neutral-400">
+//             A collection of projects demonstrating full-stack development,
+//             automation and UI engineering.
+//           </p>
+//         </div>
+
+//         {/* GROUP 1: PRODUCTION PROJECTS */}
+//         {productionProjects.length > 0 && (
+//           <div className="mb-20">
+//             <div className="flex items-center gap-4 mb-8">
+//               <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-200 tracking-tight">
+//                 Production Projects
+//               </h3>
+//               <div className="flex-1 border-t border-neutral-200 dark:border-neutral-800" />
+//             </div>
+//             <motion.div 
+//               variants={containerVariants}
+//               initial="hidden"
+//               whileInView="show"
+//               viewport={{ once: true, margin: "-100px" }}
+//               className="grid gap-8 md:grid-cols-2 xl:grid-cols-3 items-start"
+//             >
+//               {productionProjects.map((project) => (
+//                 <ProjectCard key={project.title} project={project} />
+//               ))}
+//             </motion.div>
+//           </div>
+//         )}
+
+//         {/* GROUP 2: OPEN SOURCE & EXPERIMENTS */}
+//         {openSourceProjects.length > 0 && (
+//           <div>
+//             <div className="flex items-center gap-4 mb-8">
+//               <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-200 tracking-tight">
+//                 Open Source & Experiments
+//               </h3>
+//               <div className="flex-1 border-t border-neutral-200 dark:border-neutral-800" />
+//             </div>
+//             <motion.div 
+//               variants={containerVariants}
+//               initial="hidden"
+//               whileInView="show"
+//               viewport={{ once: true, margin: "-100px" }}
+//               className="grid gap-8 md:grid-cols-2 xl:grid-cols-3 items-start"
+//             >
+//               {openSourceProjects.map((project) => (
+//                 <ProjectCard key={project.title} project={project} />
+//               ))}
+//             </motion.div>
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ================= PROJECT CARD COMPONENT ================= */
+// function ProjectCard({ project }: { project: any }) {
+//   const cardRef = useRef<HTMLDivElement>(null);
+  
+//   // Spotlight Trackers
+//   const [mouseX, setMouseX] = useState(0);
+//   const [mouseY, setMouseY] = useState(0);
+
+//   // 3D Tilt Values
+//   const x = useMotionValue(0);
+//   const y = useMotionValue(0);
+
+//   // Smooth, high-fidelity 3D physics settings
+//   const rotateX = useSpring(
+//     useTransform(y, [-0.5, 0.5], [8, -8]),
+//     {
+//       stiffness: 120,
+//       damping: 18,
+//       mass: 0.8,
+//     }
+//   );
+
+//   const rotateY = useSpring(
+//     useTransform(x, [-0.5, 0.5], [-10, 10]),
+//     {
+//       stiffness: 120,
+//       damping: 18,
+//       mass: 0.8,
+//     }
+//   );
+
+//   // Independent floating setup configuration
+//   const floatConfig = useMemo(() => {
+//     const amplitude = 6 + Math.random() * 5;
+//     const duration = 9 + Math.random() * 3;
+
+//     return {
+//       amplitude,
+//       duration,
+//       delay: Math.random() * 2,
+//     };
+//   }, []);
+
+//   // Section entry variants to stagger nicely on initial view
+//   const cardEntryVariants = {
+//     hidden: { opacity: 0, y: 30 },
+//     show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 15 } }
+//   };
+
+//   // Upgraded custom hover layout variants (Removed animated box-shadow)
+//   const cardHoverVariants = {
+//     hover: {
+//       y: -10,
+//       scale: 1.025,
+//       transition: {
+//         type: "spring" as const,
+//         stiffness: 260,
+//         damping: 20,
+//         staggerChildren: 0.04,
+//       },
+//     },
+//   };
+
+//   function handleMouseMove(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+//     if (!cardRef.current) return;
+//     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+    
+//     // Set Spotlight Positions
+//     setMouseX(event.clientX - left);
+//     setMouseY(event.clientY - top);
+
+//     // Set Tilt Angles
+//     x.set((event.clientX - left) / width - 0.5);
+//     y.set((event.clientY - top) / height - 0.5);
+//   }
+
+//   function handleMouseLeave() {
+//     x.set(0);
+//     y.set(0);
+//   }
+
+//   const renderStatusBadge = (status: string) => {
+//     switch (status) {
+//       case "Live":
+//         return (
+//           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
+//             🟢 Production
+//           </span>
+//         );
+//       case "Open Source":
+//         return (
+//           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2.5 py-0.5 rounded-full">
+//             &lt;&gt; Open Source
+//           </span>
+//         );
+//       case "Prototype":
+//         return (
+//           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2.5 py-0.5 rounded-full">
+//             🧪 Prototype
+//           </span>
+//         );
+//       case "Private":
+//         return (
+//           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-500/10 px-2.5 py-0.5 rounded-full">
+//             🔒 Enterprise
+//           </span>
+//         );
+//       default:
+//         return null;
+//     }
+//   };
+
+//   const chipVariants = {
+//     initial: { y: 0 },
+//     hover: { y: -3, transition: { type: "spring", stiffness: 300, damping: 12 } }
+//   } as const;
+
+//   return (
+//     <HoverCard>
+//       {/* LAYER 1: OUTSIDE INDEPENDENT FLOATING CONTAINER */}
+//       <motion.div
+//         animate={{
+//           y: [0, -floatConfig.amplitude, 0, floatConfig.amplitude, 0],
+//           rotateZ: [0, 0.4, 0, -0.4, 0],
+//           scale: [1, 1.008, 1, 0.996, 1],
+//         }}
+//         transition={{
+//           duration: floatConfig.duration,
+//           repeat: Infinity,
+//           ease: "linear",
+//           delay: floatConfig.delay,
+//         }}
+//       >
+//         {/* LAYER 2: INTERIOR RESPONSIVE 3D TILT & GESTURE LAYER */}
+//         <motion.div
+//           ref={cardRef}
+//           variants={{ ...cardEntryVariants, ...cardHoverVariants }}
+//           whileHover="hover"
+//           onMouseMove={handleMouseMove}
+//           onMouseLeave={handleMouseLeave}
+//           style={{
+//             rotateX,
+//             rotateY,
+//             transformStyle: "preserve-3d",
+//             transformPerspective: 1800,
+//           }}
+//           className="group relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/90 shadow-sm hover:shadow-2xl dark:shadow-black/20 transition-all duration-500 p-6 flex flex-col gap-4 h-full will-change-transform before:absolute before:inset-0 before:rounded-3xl before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/20 before:via-violet-500/20 before:to-blue-500/20 before:opacity-0 group-hover:before:opacity-100 before:pointer-events-none"
+//         >
+//           {/* PREMIUM SLOW PULSING GLOW */}
+//           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none">
+//             <div className="absolute -top-10 left-1/2 w-32 h-32 bg-violet-400/10 blur-3xl rounded-full animate-[pulse_4s_ease-in-out_infinite]" />
+//           </div>
+
+//           {/* MOVING SPOTLIGHT RECTANGLE */}
+//           <div 
+//             className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+//             style={{
+//               background: `radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(124, 58, 237, 0.06), transparent 80%)`
+//             }}
+//           />
+
+//           <div>
+//             {/* IMAGE CONTAINER */}
+//             <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-neutral-200/70 dark:border-neutral-800 shadow-sm bg-neutral-100 dark:bg-neutral-950 ring-1 ring-black/5 dark:ring-white/5">
+//               <div className="h-full w-full overflow-hidden">
+//                 <Image
+//                   src={project.image}
+//                   alt={project.title}
+//                   fill
+//                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:-translate-y-2"
+//                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//                 />
+//               </div>
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+//             </div>
+//           </div>
+
+//           {/* PREMIUM LAYER SEPARATION WRAPPER */}
+//           <div className="relative z-10">
+//             <div className="space-y-2.5">
+//               <div className="flex items-center justify-start gap-2">
+//                 {renderStatusBadge(project.status)}
+//                 <span className="text-xs font-semibold text-neutral-400 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800/60 px-2.5 py-0.5 rounded-full">{project.year}</span>
+//               </div>
+              
+//               <h3 className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white transition duration-300 group-hover:text-violet-500 group-hover:translate-x-0.5">
+//                 {project.title}
+//               </h3>
+
+//               <p className="text-[14px] leading-6 text-neutral-600 dark:text-neutral-400 line-clamp-2 pt-0.5">
+//                 {project.description}
+//               </p>
+//             </div>
+
+//             {/* CHIPS */}
+//             {project.highlights && project.highlights.length > 0 && (
+//               <div className="mt-4 flex flex-wrap gap-1.5">
+//                 {project.highlights.slice(0, 3).map((h: string) => (
+//                   <span
+//                     key={h}
+//                     className="text-[10px] px-2 py-0.5 rounded-full bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-300 border border-violet-200/30 dark:border-violet-500/20"
+//                   >
+//                     {h}
+//                   </span>
+//                 ))}
+//               </div>
+//             )}
+
+//             {/* METRICS */}
+//             {project.metrics && (
+//               <div className="mt-5 grid grid-cols-3 gap-2 bg-neutral-50 dark:bg-neutral-950/40 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800/40">
+//                 {project.metrics.map((metric: string, idx: number) => (
+//                   <div key={idx} className="text-center">
+//                     <div className="text-[11px] font-bold text-neutral-700 dark:text-neutral-300 truncate tracking-tight">{metric.split(' ')[0]}</div>
+//                     <div className="text-[9px] font-medium text-neutral-400 dark:text-neutral-500 mt-0.5 truncate">{metric.split(' ').slice(1).join(' ') || 'Value'}</div>
+//                   </div>
+//                 ))}
+//               </div>
+//             )}
+
+//             <div className="my-5 border-t border-neutral-100 dark:border-neutral-800/40" />
+
+//             {/* STAGGERED TECH STACK */}
+//             <motion.div className="flex flex-wrap gap-1.5">
+//               {project.tech.map((tech: string) => (
+//                 <motion.span
+//                   key={tech}
+//                   variants={chipVariants}
+//                   className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-0.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-300 border border-neutral-200/20 dark:border-neutral-700/30"
+//                 >
+//                   {tech}
+//                 </motion.span>
+//               ))}
+//             </motion.div>
+//           </div>
+
+//           {/* FOOTER */}
+//           <div className="mt-auto">
+//             <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800/60 flex gap-3">
+//               {project.live ? (
+//                 <Link
+//                   href={project.live}
+//                   target="_blank"
+//                   className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
+//                 >
+//                   Open Project 
+//                   <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
+//                 </Link>
+//               ) : project.status === "Private" ? (
+//                 <Link
+//                   href={project.slug || "#"}
+//                   className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
+//                 >
+//                   Read Case Study 
+//                   <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
+//                 </Link>
+//               ) : (
+//                 project.slug && (
+//                   <Link
+//                     href={project.slug}
+//                     target={project.slug.startsWith("http") ? "_blank" : "_self"}
+//                     className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
+//                   >
+//                     View Source 
+//                     <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
+//                   </Link>
+//                 )
+//               )}
+
+//               {project.github && (
+//                 <Link
+//                   href={project.github}
+//                   target="_blank"
+//                   className="inline-flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 p-2.5 text-neutral-600 dark:text-neutral-400 transition hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-200/40 dark:border-neutral-700/50"
+//                   title="View GitHub"
+//                 >
+//                   <FaGithub size={16} />
+//                 </Link>
+//               )}
+//             </div>
+//           </div>
+
+//           <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-blue-500/10 z-0" />
+//         </motion.div>
+//       </motion.div>
+//     </HoverCard>
+//   );
+// }
+
+
+
+
+
+
+
 "use client";
 
 import React, { useState, useRef, useMemo } from "react";
@@ -3209,7 +3659,7 @@ export default function Projects() {
       image: "/images/projects/portfolio.png",
       status: "Live",
       year: "2026",
-      metrics: ["99.9% Uptime", "100 LightHouse", "SEO Optimized"],
+      metrics: ["React", "Next.js", "TypeScript"],
     },
     {
       title: "PCB Simulation & Test Automation Suite",
@@ -3224,7 +3674,7 @@ export default function Projects() {
       image: "/images/projects/advantest-automation.png", 
       status: "Private",
       year: "2025",
-      metrics: ["-72% Test Duration", "50+ Workflows", "MNC Deployment"],
+      metrics: ["50+ Workflows", "72% Faster", "Enterprise"],
     },
     {
       title: "E-commerce Platform",
@@ -3239,6 +3689,7 @@ export default function Projects() {
       image: "/images/projects/ecommerce.png",
       status: "Private",
       year: "2025",
+      metrics: ["12 Modules", "5 APIs", "OAuth2"],
     },
     {
       title: "Automation Tool",
@@ -3253,14 +3704,13 @@ export default function Projects() {
       image: "/images/projects/automation.png",
       status: "Open Source",
       year: "2025",
-      metrics: ["12k Active Users", "100% Free Core", "MIT Licensed"],
+      metrics: ["12k Stars", "MIT License", "Open Source"],
     },
   ];
 
   const productionProjects = projects.filter(p => p.status === "Live" || p.status === "Private");
   const openSourceProjects = projects.filter(p => p.status === "Open Source" || p.status === "Prototype");
 
-  // Stagger container setup for whole initial sections
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -3339,78 +3789,122 @@ export default function Projects() {
   );
 }
 
+/* ================= BROWSER MOCKUP COMPONENT ================= */
+interface BrowserMockupProps {
+  image: string;
+  alt: string;
+  status: string;
+  liveUrl: string | null;
+  title: string;
+}
+
+function BrowserMockup({ image, alt, status, liveUrl, title }: BrowserMockupProps) {
+  // Compute contextual placeholders based on the project title/type
+  const displayDomain = useMemo(() => {
+    if (status === "Live" && liveUrl) {
+      try {
+        return new URL(liveUrl).hostname;
+      } catch {
+        return "project.demo";
+      }
+    }
+    if (status === "Private") {
+      if (title.toLowerCase().includes("advantest")) return "advantest.local";
+      if (title.toLowerCase().includes("ecommerce")) return "enterprise.internal";
+      return "internal.company";
+    }
+    return "github.com/readme";
+  }, [status, liveUrl, title]);
+
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 shadow-md bg-neutral-100 dark:bg-neutral-950 flex flex-col group/browser">
+      {/* Browser Header Bar */}
+      <div className="flex items-center h-9 px-4 bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200/70 dark:border-neutral-800/80 select-none shrink-0 gap-2">
+        {/* Traffic Light Window Triggers */}
+        <div className="flex gap-1.5 w-16">
+          <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover/browser:bg-red-400 dark:group-hover/browser:bg-red-500/80 transition-colors duration-300" />
+          <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover/browser:bg-amber-400 dark:group-hover/browser:bg-amber-500/80 transition-colors duration-300" />
+          <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover/browser:bg-emerald-400 dark:group-hover/browser:bg-emerald-500/80 transition-colors duration-300" />
+        </div>
+
+        {/* Dynamic Address Frame */}
+        <div className="flex-1 max-w-xs mx-auto h-6 rounded bg-neutral-200/50 dark:bg-neutral-950/60 flex items-center justify-center gap-1.5 px-3 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 border border-neutral-200/20 dark:border-neutral-800/40">
+          {status === "Private" ? (
+            <span className="text-purple-500 text-[10px]" title="Secure Internal Connection">🔒</span>
+          ) : (
+            <span className="text-emerald-500 text-[10px]">🌐</span>
+          )}
+          <span className="truncate select-all">{displayDomain}</span>
+        </div>
+        
+        {/* Balance Spacer */}
+        <div className="w-16" />
+      </div>
+
+      {/* Screen Content Window Area */}
+      <div className="relative flex-1 w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05] group-hover:-translate-y-1"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        
+        {/* Glass Premium Overlays: Diagonal Reflection Line & Shading */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.08] dark:to-white/[0.02]" />
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-b from-white/[0.04] to-transparent" />
+      </div>
+    </div>
+  );
+}
+
 /* ================= PROJECT CARD COMPONENT ================= */
 function ProjectCard({ project }: { project: any }) {
   const cardRef = useRef<HTMLDivElement>(null);
   
-  // Spotlight Trackers
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
-  // 3D Tilt Values
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Smooth, high-fidelity 3D physics settings
   const rotateX = useSpring(
     useTransform(y, [-0.5, 0.5], [8, -8]),
-    {
-      stiffness: 120,
-      damping: 18,
-      mass: 0.8,
-    }
+    { stiffness: 120, damping: 18, mass: 0.8 }
   );
 
   const rotateY = useSpring(
     useTransform(x, [-0.5, 0.5], [-10, 10]),
-    {
-      stiffness: 120,
-      damping: 18,
-      mass: 0.8,
-    }
+    { stiffness: 120, damping: 18, mass: 0.8 }
   );
 
-  // Independent floating setup configuration
   const floatConfig = useMemo(() => {
     const amplitude = 6 + Math.random() * 5;
     const duration = 9 + Math.random() * 3;
-
-    return {
-      amplitude,
-      duration,
-      delay: Math.random() * 2,
-    };
+    return { amplitude, duration, delay: Math.random() * 2 };
   }, []);
 
-  // Section entry variants to stagger nicely on initial view
   const cardEntryVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 15 } }
-  };
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+  } as const;
 
-  // Upgraded custom hover layout variants (Removed animated box-shadow)
   const cardHoverVariants = {
     hover: {
       y: -10,
-      scale: 1.025,
-      transition: {
-        type: "spring" as const,
-        stiffness: 260,
-        damping: 20,
-        staggerChildren: 0.04,
-      },
+      scale: 1.02,
+      transition: { type: "spring", stiffness: 260, damping: 20, staggerChildren: 0.04 },
     },
-  };
+  } as const;
 
   function handleMouseMove(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (!cardRef.current) return;
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
     
-    // Set Spotlight Positions
     setMouseX(event.clientX - left);
     setMouseY(event.clientY - top);
 
-    // Set Tilt Angles
     x.set((event.clientX - left) / width - 0.5);
     y.set((event.clientY - top) / height - 0.5);
   }
@@ -3424,25 +3918,25 @@ function ProjectCard({ project }: { project: any }) {
     switch (status) {
       case "Live":
         return (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
             🟢 Production
           </span>
         );
       case "Open Source":
         return (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2.5 py-0.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2.5 py-0.5 rounded-full">
             &lt;&gt; Open Source
           </span>
         );
       case "Prototype":
         return (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2.5 py-0.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2.5 py-0.5 rounded-full">
             🧪 Prototype
           </span>
         );
       case "Private":
         return (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-500/10 px-2.5 py-0.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-500/10 px-2.5 py-0.5 rounded-full">
             🔒 Enterprise
           </span>
         );
@@ -3458,12 +3952,12 @@ function ProjectCard({ project }: { project: any }) {
 
   return (
     <HoverCard>
-      {/* LAYER 1: OUTSIDE INDEPENDENT FLOATING CONTAINER */}
+      {/* LAYER 1: OUTSIDE FLOATING CONTAINER */}
       <motion.div
         animate={{
           y: [0, -floatConfig.amplitude, 0, floatConfig.amplitude, 0],
           rotateZ: [0, 0.4, 0, -0.4, 0],
-          scale: [1, 1.008, 1, 0.996, 1],
+          scale: [1, 1.005, 1, 0.995, 1],
         }}
         transition={{
           duration: floatConfig.duration,
@@ -3472,7 +3966,7 @@ function ProjectCard({ project }: { project: any }) {
           delay: floatConfig.delay,
         }}
       >
-        {/* LAYER 2: INTERIOR RESPONSIVE 3D TILT & GESTURE LAYER */}
+        {/* LAYER 2: INTERIOR 3D TILT LAYER */}
         <motion.div
           ref={cardRef}
           variants={{ ...cardEntryVariants, ...cardHoverVariants }}
@@ -3485,14 +3979,13 @@ function ProjectCard({ project }: { project: any }) {
             transformStyle: "preserve-3d",
             transformPerspective: 1800,
           }}
-          className="group relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/90 shadow-sm hover:shadow-2xl dark:shadow-black/20 transition-all duration-500 p-6 flex flex-col gap-4 h-full will-change-transform before:absolute before:inset-0 before:rounded-3xl before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/20 before:via-violet-500/20 before:to-blue-500/20 before:opacity-0 group-hover:before:opacity-100 before:pointer-events-none"
+          className="group relative overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/90 shadow-sm hover:shadow-2xl dark:shadow-black/20 transition-all duration-500 p-5 flex flex-col gap-4 h-full will-change-transform before:absolute before:inset-0 before:rounded-3xl before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/20 before:via-violet-500/20 before:to-blue-500/20 before:opacity-0 group-hover:before:opacity-100 before:pointer-events-none"
         >
-          {/* PREMIUM SLOW PULSING GLOW */}
+          {/* BACKGROUND GLOWS */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none">
             <div className="absolute -top-10 left-1/2 w-32 h-32 bg-violet-400/10 blur-3xl rounded-full animate-[pulse_4s_ease-in-out_infinite]" />
           </div>
 
-          {/* MOVING SPOTLIGHT RECTANGLE */}
           <div 
             className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
             style={{
@@ -3500,24 +3993,17 @@ function ProjectCard({ project }: { project: any }) {
             }}
           />
 
-          <div>
-            {/* IMAGE CONTAINER */}
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-neutral-200/70 dark:border-neutral-800 shadow-sm bg-neutral-100 dark:bg-neutral-950 ring-1 ring-black/5 dark:ring-white/5">
-              <div className="h-full w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] group-hover:-translate-y-2"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </div>
+          {/* EXTRACTED MODULAR BROWSER MOCKUP AREA */}
+          <BrowserMockup 
+            image={project.image}
+            alt={project.title}
+            status={project.status}
+            liveUrl={project.live}
+            title={project.title}
+          />
 
-          {/* PREMIUM LAYER SEPARATION WRAPPER */}
-          <div className="relative z-10">
+          {/* PROJECT CONTENT INFO */}
+          <div className="relative z-10 flex flex-col flex-1">
             <div className="space-y-2.5">
               <div className="flex items-center justify-start gap-2">
                 {renderStatusBadge(project.status)}
@@ -3533,7 +4019,7 @@ function ProjectCard({ project }: { project: any }) {
               </p>
             </div>
 
-            {/* CHIPS */}
+            {/* CHIPS / HIGHLIGHTS */}
             {project.highlights && project.highlights.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {project.highlights.slice(0, 3).map((h: string) => (
@@ -3547,36 +4033,35 @@ function ProjectCard({ project }: { project: any }) {
               </div>
             )}
 
-            {/* METRICS */}
+            {/* UPGRADED CONTEXTUAL METRICS AND STACK STATS */}
             {project.metrics && (
-              <div className="mt-5 grid grid-cols-3 gap-2 bg-neutral-50 dark:bg-neutral-950/40 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800/40">
+              <div className="mt-5 grid grid-cols-3 gap-2 bg-neutral-50 dark:bg-neutral-950/40 p-2 rounded-xl border border-neutral-100 dark:border-neutral-800/40">
                 {project.metrics.map((metric: string, idx: number) => (
-                  <div key={idx} className="text-center">
-                    <div className="text-[11px] font-bold text-neutral-700 dark:text-neutral-300 truncate tracking-tight">{metric.split(' ')[0]}</div>
-                    <div className="text-[9px] font-medium text-neutral-400 dark:text-neutral-500 mt-0.5 truncate">{metric.split(' ').slice(1).join(' ') || 'Value'}</div>
+                  <div key={idx} className="text-center py-1 px-0.5 flex flex-col justify-center items-center border-r last:border-r-0 border-neutral-200/40 dark:border-neutral-800/50">
+                    <div className="text-[11px] font-bold text-neutral-800 dark:text-neutral-200 truncate tracking-tight w-full">
+                      {metric}
+                    </div>
                   </div>
                 ))}
               </div>
             )}
 
-            <div className="my-5 border-t border-neutral-100 dark:border-neutral-800/40" />
+            <div className="my-4 mt-auto border-t border-neutral-100 dark:border-neutral-800/40" />
 
-            {/* STAGGERED TECH STACK */}
-            <motion.div className="flex flex-wrap gap-1.5">
+            {/* STAGGERED TECH STACK PILLS */}
+            <motion.div className="flex flex-wrap gap-1.5 mb-5">
               {project.tech.map((tech: string) => (
                 <motion.span
                   key={tech}
                   variants={chipVariants}
-                  className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-0.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-300 border border-neutral-200/20 dark:border-neutral-700/30"
+                  className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-2.5 py-0.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-300 border border-neutral-200/20 dark:border-neutral-700/30"
                 >
                   {tech}
                 </motion.span>
               ))}
             </motion.div>
-          </div>
 
-          {/* FOOTER */}
-          <div className="mt-auto">
+            {/* ACTION FOOTER BUTTONS */}
             <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800/60 flex gap-3">
               {project.live ? (
                 <Link
@@ -3584,15 +4069,15 @@ function ProjectCard({ project }: { project: any }) {
                   target="_blank"
                   className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
                 >
-                  Open Project 
+                  Open Live Demo 
                   <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
                 </Link>
               ) : project.status === "Private" ? (
                 <Link
                   href={project.slug || "#"}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-700 px-4 py-2.5 text-xs font-semibold shadow-sm border border-neutral-200/60 dark:border-neutral-700/60 transition group/btn"
                 >
-                  Read Case Study 
+                  Case Study 
                   <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
                 </Link>
               ) : (
@@ -3602,7 +4087,7 @@ function ProjectCard({ project }: { project: any }) {
                     target={project.slug.startsWith("http") ? "_blank" : "_self"}
                     className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 group/btn"
                   >
-                    View Source 
+                    GitHub Repo 
                     <span className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5">↗</span>
                   </Link>
                 )
@@ -3621,7 +4106,7 @@ function ProjectCard({ project }: { project: any }) {
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-blue-500/10 z-0" />
+          <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-cyan-500/5 via-violet-500/5 to-blue-500/5 z-0" />
         </motion.div>
       </motion.div>
     </HoverCard>
