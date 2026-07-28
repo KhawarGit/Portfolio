@@ -4,6 +4,8 @@ import MouseGlow from "@/components/ui/mouse-glow";
 // import AuroraBackground from "@/components/ui/aurora-background";
 import CanvasCursor from "@/components/ui/CanvasCursor";
 import SplashCursor from "@/components/ui/SplashCursor";
+import SmoothScroll from "@/components/ui/smooth-scroll";
+import PageLoader from "@/components/ui/page-loader";
 import { Toaster } from "sonner";
 
 import { ThemeProviderWrapper } from "@/components/ui/theme-provider";
@@ -68,7 +70,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProviderWrapper> 
+        <PageLoader />
+        <ThemeProviderWrapper>
           {/* <CanvasCursor /> */}
           {/* <MouseGlow /> */}
           {/* <AuroraBackground /> */}
@@ -85,6 +88,9 @@ export default function RootLayout({
   COLOR="#7C3AED"
 /> */}
 <SplashCursor
+  SIM_RESOLUTION={96}
+  DYE_RESOLUTION={720}
+  PRESSURE_ITERATIONS={14}
   DENSITY_DISSIPATION={4}
   VELOCITY_DISSIPATION={2.7}
   PRESSURE={0.11}
@@ -96,7 +102,7 @@ export default function RootLayout({
   RAINBOW_MODE={false}
   COLOR="#8B5CF6"
 />
-          {children}
+          <SmoothScroll>{children}</SmoothScroll>
           <Toaster position="top-right" richColors />
         </ThemeProviderWrapper>
       </body>

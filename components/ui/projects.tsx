@@ -8718,10 +8718,31 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { FiExternalLink, FiFileText, FiCode } from "react-icons/fi";
+
+// three.js + @react-three/fiber + drei weigh well over 1MB. Loading them
+// eagerly (a plain import) pulls that whole chunk into the critical path
+// of every page load, even though the 3D scenes only appear once the user
+// scrolls to this section. next/dynamic splits it into its own chunk that
+// loads in the background without blocking hydration of the rest of the page.
+const ProjectScene3D = dynamic(() => import("@/components/ui/project-3d-scene"), {
+  ssr: false,
+  loading: () => <Scene3DLoader />,
+});
+
+function Scene3DLoader() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-neutral-950">
+      <div className="relative h-10 w-10">
+        <div className="absolute inset-0 rounded-full border-2 border-white/10" />
+        <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-cyan-400 border-r-violet-400" />
+      </div>
+    </div>
+  );
+}
 
 const cn = (...classes: (string | boolean | undefined)[]) => classes.filter(Boolean).join(" ");
 
@@ -8752,15 +8773,15 @@ interface Project {
 }
 
 const statusConfig: Record<ProjectVisibility, { style: string; badgeStyle: string; label: string }> = {
-  [ProjectStatus.LIVE]: { 
-    style: "bg-emerald-500/20 text-emerald-400 dark:text-emerald-300 border-emerald-500/30", 
-    badgeStyle: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10",
-    label: "Live" 
+  [ProjectStatus.LIVE]: {
+    style: "bg-cyan-500/20 text-cyan-400 dark:text-cyan-300 border-cyan-500/30",
+    badgeStyle: "text-cyan-600 dark:text-cyan-400 bg-cyan-500/10",
+    label: "Live"
   },
-  [ProjectStatus.PRIVATE]: { 
-    style: "bg-amber-500/20 text-amber-400 dark:text-amber-300 border-amber-500/30", 
-    badgeStyle: "text-amber-600 dark:text-amber-400 bg-amber-500/10",
-    label: "Private" 
+  [ProjectStatus.PRIVATE]: {
+    style: "bg-indigo-500/20 text-indigo-400 dark:text-indigo-300 border-indigo-500/30",
+    badgeStyle: "text-indigo-600 dark:text-indigo-400 bg-indigo-500/10",
+    label: "Private"
   },
   [ProjectStatus.OPEN_SOURCE]: { 
     style: "bg-violet-500/20 text-violet-400 dark:text-violet-300 border-violet-500/30", 
@@ -8795,7 +8816,7 @@ export default function Projects() {
       title: "Portfolio Website",
       role: "Frontend / Creative Dev",
       description: "A modern portfolio built with Next.js, Tailwind CSS, Framer Motion and TypeScript.",
-      scene: "car",
+      scene: "laptop",
       tech: ["Next.js", "Tailwind", "TypeScript"],
       highlights: ["Framer Motion", "Responsive Design", "SEO Optimized"],
       github: "https://github.com/your-username/portfolio",
@@ -8945,14 +8966,14 @@ interface BrowserMockupProps {
 }
 
 function BrowserMockup({ project }: BrowserMockupProps) {
-  const { title, image, status, tech } = project;
+  const { title, status, tech } = project;
   const config = statusConfig[status];
   const primaryAction = getPrimaryAction(project);
   const Icon = primaryAction.icon;
 
   return (
     <div className="group/browser relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-900 shadow-xl transition-all duration-500">
-      <div className="absolute top-[34px] left-3 z-20">
+      <div className="pointer-events-none absolute top-[34px] left-3 z-20">
         <span className={cn("rounded-full px-2 py-1 text-[10px] font-semibold backdrop-blur-md border", config.style)}>
           {config.label}
         </span>
@@ -8970,18 +8991,14 @@ function BrowserMockup({ project }: BrowserMockupProps) {
       </div>
       
       <div className="relative h-[calc(100%-32px)] w-full bg-neutral-50 dark:bg-neutral-950">
-        <Image
-          src={image}
-          alt={`Screenshot mockup of ${title}`}
-          fill
-          priority={false}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover/browser:scale-105 group-hover/browser:translate-y-[-4px]"
+        <ProjectScene3D
+          scene={project.scene}
+          className="absolute inset-0 transition-transform duration-700 ease-out group-hover/browser:scale-105"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover/browser:opacity-100 transition-opacity duration-500" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover/browser:opacity-100 transition-opacity duration-500" />
 
-        <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5 z-20">
+        <div className="pointer-events-none absolute bottom-3 left-3 flex flex-wrap gap-1.5 z-20">
           {tech.slice(0, 3).map((t) => (
             <span
               key={t}
@@ -8992,12 +9009,15 @@ function BrowserMockup({ project }: BrowserMockupProps) {
           ))}
         </div>
 
-        <div className="absolute inset-0 opacity-100 md:opacity-0 md:group-hover/browser:opacity-100 transition-all duration-300 bg-black/40 dark:bg-black/60 backdrop-blur-sm flex items-center justify-center gap-2.5 z-30">
-          <Link 
-            href={primaryAction.href} 
+        {/* pointer-events-none on the backdrop (so it doesn't block
+            drag-to-rotate on the canvas beneath), pointer-events-auto
+            on just the button so the CTA itself stays clickable */}
+        <div className="pointer-events-none absolute inset-0 opacity-100 md:opacity-0 md:group-hover/browser:opacity-100 transition-all duration-300 bg-black/40 dark:bg-black/60 backdrop-blur-sm flex items-center justify-center gap-2.5 z-30">
+          <Link
+            href={primaryAction.href}
             target={primaryAction.isExternal ? "_blank" : undefined}
             aria-label={`${primaryAction.label} for ${title}`}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100 transition"
+            className="pointer-events-auto inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100 transition"
           >
             {primaryAction.label} <Icon size={12} />
           </Link>
@@ -9119,11 +9139,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 <Link
                   href={project.github}
                   target="_blank"
-                  className="group/github flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-violet-500 dark:hover:text-violet-400 hover:border-violet-500/50 dark:hover:border-violet-400/50 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all duration-300 bg-transparent shadow-sm"
+                  rel="noopener noreferrer"
+                  className="group/github inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 px-3 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-violet-600 dark:hover:text-violet-400 hover:border-violet-500/50 dark:hover:border-violet-400/50 hover:shadow-[0_0_15px_rgba(139,92,246,0.35)] transition-all duration-300 bg-transparent shadow-sm"
                   title="View Source Repository"
                   aria-label={`View GitHub repository for ${project.title}`}
                 >
-                  <FaGithub size={16} className="transition-transform duration-300 group-hover/github:scale-110" />
+                  <FaGithub size={15} className="transition-transform duration-300 group-hover/github:scale-110" />
+                  <span>GitHub</span>
                 </Link>
               )}
 

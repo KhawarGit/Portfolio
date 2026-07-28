@@ -1072,9 +1072,9 @@ export default function Timeline() {
                     ) : item.type === "university" ? (
                       <GraduationCap className="text-violet-400" />
                     ) : item.type === "internship" ? (
-                      <Laptop2 className="text-emerald-400" />
+                      <Laptop2 className="text-cyan-400" />
                     ) : (
-                      <School className="text-orange-400" />
+                      <School className="text-blue-400" />
                     )}
 
                     <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl" />
@@ -1173,9 +1173,9 @@ function Card({ item }: any) {
                 ) : item.type === "university" ? (
                   <GraduationCap size={18} className="text-violet-400" />
                 ) : item.type === "internship" ? (
-                  <Laptop2 size={18} className="text-emerald-400" />
+                  <Laptop2 size={18} className="text-cyan-400" />
                 ) : (
-                  <School size={18} className="text-orange-400" />
+                  <School size={18} className="text-blue-400" />
                 )}
                 {item.title}
               </h3>

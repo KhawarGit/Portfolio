@@ -347,7 +347,7 @@ export default function About() {
       desc: "Frontend + backend + APIs + deployment workflows.",
     },
     {
-      icon: <Sparkles size={18} className="text-amber-500" />,
+      icon: <Sparkles size={18} className="text-indigo-500" />,
       title: "Modern UI",
       desc: "Beautiful interfaces using Tailwind and modern design systems.",
     },

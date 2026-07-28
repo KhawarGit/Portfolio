@@ -2697,7 +2697,7 @@ import {
 // import ShapeGrid from "@/components/ui/shape-gird";
 import ShapeGridOutline from "@/components/ui/outline-shape-grid";
 
-import CertificationUmbrellaDashboard from "@/components/ui/certificationUmbrellaDashboard";
+import CertificationDashboard from "@/components/ui/certification-dashboard";
 
 const logoThemes = [
   {
@@ -2710,8 +2710,8 @@ const logoThemes = [
     textGradient: "from-white via-neutral-200 to-cyan-200",
   },
   {
-    aura: "from-violet-500 via-fuchsia-500 to-pink-500",
-    rim: "from-pink-400 via-violet-400 to-fuchsia-500",
+    aura: "from-violet-500 via-blue-500 to-cyan-500",
+    rim: "from-blue-400 via-violet-400 to-cyan-500",
     badge: "border-violet-400/30",
     strip: "via-violet-300/80",
     icon: "group-hover:text-violet-300",
@@ -2719,31 +2719,31 @@ const logoThemes = [
     textGradient: "from-white via-neutral-200 to-violet-200",
   },
   {
-    aura: "from-emerald-400 via-teal-500 to-cyan-500",
-    rim: "from-emerald-400 via-lime-400 to-cyan-500",
-    badge: "border-emerald-400/30",
-    strip: "via-emerald-300/80",
-    icon: "group-hover:text-emerald-300",
-    shadow: "rgba(16,185,129,.35)",
-    textGradient: "from-white via-neutral-200 to-emerald-200",
+    aura: "from-blue-400 via-teal-500 to-cyan-500",
+    rim: "from-blue-400 via-teal-400 to-cyan-500",
+    badge: "border-blue-400/30",
+    strip: "via-blue-300/80",
+    icon: "group-hover:text-blue-300",
+    shadow: "rgba(59,130,246,.35)",
+    textGradient: "from-white via-neutral-200 to-blue-200",
   },
   {
-    aura: "from-orange-400 via-red-500 to-yellow-400",
-    rim: "from-orange-400 via-amber-400 to-red-500",
-    badge: "border-orange-400/30",
-    strip: "via-orange-300/80",
-    icon: "group-hover:text-orange-300",
-    shadow: "rgba(249,115,22,.35)",
-    textGradient: "from-white via-neutral-200 to-orange-200",
+    aura: "from-indigo-400 via-violet-500 to-blue-400",
+    rim: "from-indigo-400 via-violet-400 to-blue-500",
+    badge: "border-indigo-400/30",
+    strip: "via-indigo-300/80",
+    icon: "group-hover:text-indigo-300",
+    shadow: "rgba(99,102,241,.35)",
+    textGradient: "from-white via-neutral-200 to-indigo-200",
   },
   {
-    aura: "from-pink-500 via-rose-500 to-red-500",
-    rim: "from-pink-500 via-rose-400 to-red-500",
-    badge: "border-pink-400/30",
-    strip: "via-pink-300/80",
-    icon: "group-hover:text-pink-300",
-    shadow: "rgba(236,72,153,.35)",
-    textGradient: "from-white via-neutral-200 to-rose-200",
+    aura: "from-violet-500 via-indigo-500 to-blue-500",
+    rim: "from-violet-500 via-indigo-400 to-blue-500",
+    badge: "border-violet-500/30",
+    strip: "via-violet-400/80",
+    icon: "group-hover:text-violet-300",
+    shadow: "rgba(139,92,246,.35)",
+    textGradient: "from-white via-neutral-200 to-violet-200",
   },
   {
     aura: "from-sky-400 via-cyan-400 to-teal-500",
@@ -2811,7 +2811,7 @@ shape="hexagon"
         onPointerMove={(e) => e.stopPropagation()} 
   onMouseMove={(e) => e.stopPropagation()}
         >
-<CertificationUmbrellaDashboard/>
+<CertificationDashboard/>
 </div>
         {/* CATEGORIES */}
         <div className="space-y-36">
@@ -2998,7 +2998,7 @@ shape="hexagon"
                           
                           {/* Premium Stats Count pill */}
                           <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-0.5 text-[11px] font-medium tracking-wider text-neutral-300 uppercase shadow-inner">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
                             {category.items.length} Modules
                           </div>
                         </div>

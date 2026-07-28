@@ -5532,7 +5532,7 @@ export default function Skills() {
     {
       id: "backend",
       title: "Backend",
-      icon: <Terminal size={18} className="text-emerald-500" />,
+      icon: <Terminal size={18} className="text-cyan-500" />,
       skills: [
         { name: "Laravel", evidence: ["18+ Projects", "SaaS Architecture", "Ecosystem Expert"], isTop: true, years: "6+ Years", productionApps: 18 },
         { name: "PHP", evidence: ["8+ Years", "OOP", "Custom Packages"], isTop: true, years: "8+ Years", productionApps: 25 },
@@ -5548,7 +5548,7 @@ export default function Skills() {
     {
       id: "database",
       title: "Databases",
-      icon: <Database size={18} className="text-purple-500" />,
+      icon: <Database size={18} className="text-violet-500" />,
       skills: [
         { name: "MySQL", evidence: ["Query Optimization", "Indexing Profiles"], isTop: true, years: "7 Years", productionApps: 20 },
         { name: "PostgreSQL", evidence: ["Complex Joins", "JSONB data fields"], isTop: true, years: "4 Years", productionApps: 11 },
@@ -5575,7 +5575,7 @@ export default function Skills() {
     {
       id: "automation",
       title: "Automation & AI",
-      icon: <Cpu size={18} className="text-amber-500" />,
+      icon: <Cpu size={18} className="text-teal-500" />,
       skills: [
         { name: "n8n", evidence: ["Complex visual workflows", "Custom Node hooks"], isTop: true, years: "2 Years", productionApps: 7 },
         { name: "OpenAI", evidence: ["Agentic Frameworks", "Prompt Engineering"], isTop: true, years: "2 Years", productionApps: 6 },
@@ -5590,7 +5590,7 @@ export default function Skills() {
     {
       id: "integrations",
       title: "Integrations",
-      icon: <Share2 size={18} className="text-indigo-500" />,
+      icon: <Share2 size={18} className="text-violet-500" />,
       skills: [
         { name: "HubSpot", evidence: ["CRM Sync rules", "Contact ingestion APIs"], years: "2 Years", productionApps: 3 },
         { name: "Twilio", evidence: ["SMS fallback", "2FA authentication systems"], years: "4 Years", productionApps: 8 },
@@ -5601,7 +5601,7 @@ export default function Skills() {
     {
       id: "payments",
       title: "Payments",
-      icon: <CreditCard size={18} className="text-rose-500" />,
+      icon: <CreditCard size={18} className="text-blue-400" />,
       skills: [
         { name: "Stripe", evidence: ["SaaS Subscriptions", "Webhooks handling"], isTop: true, years: "4 Years", productionApps: 14 },
         { name: "PayPal", evidence: ["B2C SDK checkouts", "Payout structures"], years: "3 Years", productionApps: 5 },
@@ -5691,7 +5691,7 @@ export default function Skills() {
                   const matched = categories.flatMap(c => c.skills).find(s => s.name.toLowerCase() === tech.toLowerCase());
                   if (matched) setSelectedSkill(matched);
                 }}
-                className="relative overflow-hidden px-5 py-3 rounded-xl font-medium text-sm border border-indigo-200/60 dark:border-indigo-500/20 bg-indigo-50/50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 hover:border-indigo-400 dark:hover:border-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-300 hover:shadow-indigo-100 dark:hover:shadow-none cursor-pointer group"
+                className="relative overflow-hidden px-5 py-3 rounded-xl font-medium text-sm border border-violet-200/60 dark:border-violet-500/20 bg-violet-50/50 dark:bg-violet-950/20 text-violet-600 dark:text-violet-400 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-violet-50 dark:hover:bg-violet-950/40 hover:border-violet-400 dark:hover:border-violet-500 hover:text-violet-700 dark:hover:text-violet-300 hover:shadow-violet-100 dark:hover:shadow-none cursor-pointer group"
               >
                 <span className="inline-block transition-transform duration-300 group-hover:rotate-[2deg]">{tech}</span>
               </div>
@@ -5704,7 +5704,7 @@ export default function Skills() {
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 flex items-center gap-2">
-                <GitMerge size={16} className="text-indigo-500" /> Technology Ecosystem Blueprints
+                <GitMerge size={16} className="text-violet-500" /> Technology Ecosystem Blueprints
               </h3>
               <p className="text-xs text-neutral-500 mt-1">
                 Select an architecture to view system execution pipelines and concurrent processes.
@@ -5718,11 +5718,11 @@ export default function Skills() {
                   onClick={() => setSelectedFlowId(opt.id)}
                   className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-1 ${
                     selectedFlowId === opt.id
-                      ? "bg-white dark:bg-neutral-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-neutral-200/50 dark:border-neutral-700/50"
+                      ? "bg-white dark:bg-neutral-800 text-violet-600 dark:text-violet-400 shadow-xs border border-neutral-200/50 dark:border-neutral-700/50"
                       : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                   }`}
                 >
-                  {opt.id === "nextjs-fullstack" && <RefreshCw size={11} className="text-indigo-500 animate-spin-slow" />}
+                  {opt.id === "nextjs-fullstack" && <RefreshCw size={11} className="text-violet-500 animate-spin-slow" />}
                   {opt.label}
                 </button>
               ))}
@@ -5737,8 +5737,8 @@ export default function Skills() {
                   <div className="text-[10px] text-neutral-400 mt-0.5">{activeFlow.nodes[0].label}</div>
                 </div>
                 <div className="text-neutral-300 dark:text-neutral-700"><ArrowRight className="hidden md:inline" size={14} /><ArrowDown className="md:hidden" size={14} /></div>
-                <div className="flex flex-col sm:flex-row gap-3 p-3 rounded-xl bg-indigo-50/40 dark:bg-indigo-950/10 border border-indigo-100 dark:border-indigo-900/30 relative w-full md:w-auto justify-center">
-                  <span className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-indigo-600 text-white rounded text-[8px] font-mono font-bold tracking-widest uppercase flex items-center gap-1 shadow-xs">
+                <div className="flex flex-col sm:flex-row gap-3 p-3 rounded-xl bg-violet-50/40 dark:bg-violet-950/10 border border-violet-100 dark:border-violet-900/30 relative w-full md:w-auto justify-center">
+                  <span className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-violet-600 text-white rounded text-[8px] font-mono font-bold tracking-widest uppercase flex items-center gap-1 shadow-xs">
                     <RefreshCw size={8} className="animate-spin" /> Parallel Tasks
                   </span>
                   <div className="px-3 py-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center min-w-[140px]">
@@ -5767,7 +5767,7 @@ export default function Skills() {
                   <div className={`px-4 py-2.5 rounded-xl border transition-all w-48 md:w-auto min-w-[130px] mx-auto md:mx-0 ${
                     node.isEndpoint 
                     ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 font-semibold"
-                    : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-indigo-500/40"
+                    : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-violet-500/40"
                   }`}>
                     <div className="text-xs font-bold font-mono tracking-tight">{node.name}</div>
                     <div className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-0.5 whitespace-nowrap">{node.label}</div>
@@ -5794,7 +5794,7 @@ export default function Skills() {
               placeholder="Search tools, platforms, frameworks..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-colors"
             />
           </div>
 
@@ -5820,14 +5820,14 @@ export default function Skills() {
                   onClick={() => handleCategoryToggle(cat.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-2 transform active:scale-95 duration-200 ${
                     isSelected
-                      ? "bg-indigo-600 border border-indigo-700 text-white shadow-sm pr-2"
+                      ? "bg-violet-600 border border-violet-700 text-white shadow-sm pr-2"
                       : "bg-white border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:border-neutral-300"
                   }`}
                 >
                   {!isSelected && cat.icon}
                   <span>{cat.title}</span>
                   {isSelected && (
-                    <span className="p-0.5 rounded-full bg-indigo-500 hover:bg-indigo-700 text-white transition-colors duration-150">
+                    <span className="p-0.5 rounded-full bg-violet-500 hover:bg-violet-700 text-white transition-colors duration-150">
                       <X size={10} className="stroke-[3]" />
                     </span>
                   )}
@@ -5872,11 +5872,11 @@ export default function Skills() {
                         onClick={() => setSelectedSkill(skill)}
                         className={`group/chip relative flex items-center justify-between h-9 px-3 rounded-xl border overflow-hidden cursor-pointer transition-all ${
                           skill.isTop 
-                          ? "bg-indigo-50/30 dark:bg-indigo-950/10 border-indigo-100 dark:border-indigo-900/40" 
+                          ? "bg-violet-50/30 dark:bg-violet-950/10 border-violet-100 dark:border-violet-900/40" 
                           : "bg-neutral-50 dark:bg-neutral-900/80 border-neutral-100 dark:border-neutral-800/40"
                         }`}
                       >
-                        <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300 group-hover/chip:text-indigo-600 dark:group-hover/chip:text-indigo-400 transition-colors flex items-center gap-1.5 z-10">
+                        <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300 group-hover/chip:text-violet-600 dark:group-hover/chip:text-violet-400 transition-colors flex items-center gap-1.5 z-10">
                           {skill.isTop && <Star size={12} className="fill-amber-400 text-amber-400 shrink-0" />}
                           {skill.name}
                         </span>
@@ -5888,7 +5888,7 @@ export default function Skills() {
                                 key={idx} 
                                 className="inline-flex items-center text-[9px] font-medium px-1.5 py-0.5 rounded bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800 tracking-tight whitespace-nowrap"
                               >
-                                <CheckCircle2 size={8} className="mr-1 text-indigo-400" />
+                                <CheckCircle2 size={8} className="mr-1 text-violet-400" />
                                 {point}
                               </span>
                             ))}
@@ -5930,7 +5930,7 @@ export default function Skills() {
           <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <Briefcase size={18} className="text-indigo-500" /> Production Ecosystem Cross-Reference
+                <Briefcase size={18} className="text-violet-500" /> Production Ecosystem Cross-Reference
               </h3>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                 Select a technology or click a chip anywhere to highlight related real-world architecture deliverables.
@@ -5939,7 +5939,7 @@ export default function Skills() {
             {highlightedTech && (
               <button 
                 onClick={() => setHighlightedTech(null)}
-                className="self-start text-xs bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900 text-indigo-600 dark:text-indigo-400 px-2.5 py-1 rounded-lg flex items-center gap-1 hover:bg-indigo-100 transition-colors"
+                className="self-start text-xs bg-violet-50 dark:bg-violet-950/40 border border-violet-200 dark:border-violet-900 text-violet-600 dark:text-violet-400 px-2.5 py-1 rounded-lg flex items-center gap-1 hover:bg-violet-100 transition-colors"
               >
                 Clear Filter: <strong className="font-semibold">{highlightedTech}</strong> <X size={12} />
               </button>
@@ -5956,7 +5956,7 @@ export default function Skills() {
                   key={project.name} 
                   className={`p-5 rounded-2xl border transition-all duration-300 ${
                     isTargeted 
-                      ? "bg-indigo-50/40 dark:bg-indigo-950/20 border-indigo-500 ring-2 ring-indigo-500/20 shadow-md transform -translate-y-0.5" 
+                      ? "bg-violet-50/40 dark:bg-violet-950/20 border-violet-500 ring-2 ring-violet-500/20 shadow-md transform -translate-y-0.5" 
                       : hasActiveSelection
                         ? "bg-white dark:bg-neutral-900 opacity-40 border-neutral-100 dark:border-neutral-800/60"
                         : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"
@@ -5972,8 +5972,8 @@ export default function Skills() {
                         onClick={() => setHighlightedTech(t === highlightedTech ? null : t)}
                         className={`text-[10px] font-mono px-2 py-0.5 rounded transition-all ${
                           t === highlightedTech
-                            ? "bg-indigo-600 text-white"
-                            : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 hover:text-indigo-500"
+                            ? "bg-violet-600 text-white"
+                            : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-violet-50 dark:hover:bg-violet-950/40 hover:text-violet-500"
                         }`}
                       >
                         {t}
@@ -5996,7 +5996,7 @@ export default function Skills() {
             <div>
               <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <Star size={16} className="text-indigo-500 fill-indigo-500" />
+                  <Star size={16} className="text-violet-500 fill-violet-500" />
                   <h3 className="text-lg font-bold text-neutral-900 dark:text-white font-sans">{selectedSkill.name} Insights</h3>
                 </div>
                 <button 
@@ -6028,7 +6028,7 @@ export default function Skills() {
                     <div className="space-y-2">
                       {selectedSkill.evidence.map((point, index) => (
                         <div key={index} className="flex items-start gap-2.5 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800/40 bg-neutral-50/50 dark:bg-neutral-900/20 text-xs text-neutral-700 dark:text-neutral-300">
-                          <CheckCircle2 size={14} className="text-indigo-500 dark:text-indigo-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 size={14} className="text-violet-500 dark:text-violet-400 shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </div>
                       ))}
@@ -6044,7 +6044,7 @@ export default function Skills() {
                   handleTechHighlight(selectedSkill.name);
                   setSelectedSkill(null);
                 }}
-                className="w-full py-2.5 px-4 rounded-xl text-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl text-center bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
               >
                 <Briefcase size={14} /> Highlight Projects Using {selectedSkill.name}
               </button>

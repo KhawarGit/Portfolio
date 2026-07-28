@@ -137,11 +137,13 @@ export default function Hero() {
   { node: <SiHackerrank />, title: "HackerRank" },
   ];
 
+  // Darker stops for light mode (contrast against a white page) with the
+  // brighter, more vivid stops kept for dark mode via `dark:` overrides.
   const gradients = [
-    "from-blue-500 via-cyan-400 to-violet-500",
-    "from-violet-500 via-pink-400 to-blue-500",
-    "from-emerald-400 via-cyan-500 to-blue-500",
-    "from-orange-400 via-red-500 to-violet-500",
+    "from-blue-600 via-cyan-600 to-violet-600 dark:from-blue-500 dark:via-cyan-400 dark:to-violet-500",
+    "from-violet-600 via-blue-600 to-cyan-700 dark:from-violet-500 dark:via-blue-400 dark:to-cyan-500",
+    "from-cyan-700 via-blue-600 to-violet-600 dark:from-cyan-400 dark:via-blue-500 dark:to-violet-500",
+    "from-violet-600 via-cyan-700 to-blue-600 dark:from-violet-400 dark:via-cyan-400 dark:to-blue-500",
   ];
 
   const [roleIndex, setRoleIndex] = useState(0);
@@ -179,8 +181,8 @@ export default function Hero() {
 
 
 return (
-  
-  <section className="relative min-h-screen overflow-hidden">
+
+  <section className="relative flex min-h-[100svh] flex-col overflow-hidden lg:h-screen lg:max-h-screen">
 {/* Background Logo Layer */}
 <div className="absolute inset-0 z-[1] overflow-hidden opacity-[0.06] pointer-events-none">
   <div className="absolute top-20 left-0 right-0">
@@ -232,24 +234,29 @@ return (
     <div className="absolute right-10 bottom-20 z-[2] h-80 w-80 rounded-full bg-violet-500/10 blur-3xl pointer-events-none" />
 
     {/* CONTENT */}
-    <div className="relative z-10 container-width flex min-h-screen items-start py-24">
-      <div className="grid w-full items-center gap-16 lg:grid-cols-2">
+    {/* pointer-events-none here + auto on the columns below: this flex-1
+        wrapper spans the full section height to vertically center the
+        grid, so its "empty" margin above/below the actual columns would
+        otherwise sit on top of (and block hover on) the logo loop/scroll
+        indicator layered underneath at the bottom of the hero. */}
+    <div className="pointer-events-none relative z-10 container-width flex flex-1 items-center py-20 pt-28 lg:min-h-0 lg:py-6 lg:pt-24 lg:pb-28">
+      <div className="pointer-events-none grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
         {/* LEFT */}
-        <div className="order-2 text-center lg:order-1 lg:text-left">
+        <div className="pointer-events-auto order-2 text-center lg:order-1 lg:text-left">
 
-          <div className="mb-6 inline-flex rounded-full border border-neutral-300 bg-white/50 px-4 py-2 text-sm backdrop-blur dark:border-neutral-700 dark:bg-neutral-900/50">
+          <div className="mb-4 inline-flex rounded-full border border-neutral-300 bg-white/50 px-4 py-2 text-sm backdrop-blur dark:border-neutral-700 dark:bg-neutral-900/50 lg:mb-4">
             🚀 Open to exciting opportunities
           </div>
 
-          <h1 className="text-5xl font-black leading-tight md:text-6xl lg:text-7xl">
-            Hi, I'm 
+          <h1 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl">
+            Hi, I'm
             <span className="text-gradient"> Khawar Khan</span>
           </h1>
 
-          
 
-          <div className="mt-6 flex items-center justify-center lg:justify-start">
+
+          <div className="mt-4 flex items-center justify-center lg:mt-4 lg:justify-start">
             <span
               key={roleIndex}
               className={`
@@ -267,13 +274,13 @@ return (
             <span className="ml-2 h-6 w-[3px] animate-pulse rounded-full bg-gradient-to-b from-blue-500 via-violet-500 to-cyan-500" />
           </div>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600 dark:text-neutral-400 lg:mt-4 lg:text-lg lg:leading-8">
             I build scalable web applications, automation tools, and modern
             digital experiences using React, Next.js, TypeScript, Node.js,
             Python, and cloud technologies.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+          <div className="mt-5 flex flex-wrap justify-center gap-3 lg:mt-6 lg:justify-start">
             {["Next.js", "React", "TypeScript", "Node.js", "Python", "Docker"].map(
               (tech) => (
                 <span
@@ -286,7 +293,7 @@ return (
             )}
           </div>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <div className="mt-6 flex flex-wrap justify-center gap-4 lg:mt-8 lg:justify-start">
 <Link
   href="#projects"
   className="
@@ -510,7 +517,7 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
 </Link>
           </div>
 
-<div className="mt-8 flex flex-wrap justify-center gap-5 lg:justify-start">
+<div className="mt-6 flex flex-wrap justify-center gap-5 lg:mt-8 lg:justify-start">
 
   <Link
     href="https://github.com/KhawarGit"
@@ -564,7 +571,7 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
     href="mailto:khawarkhanibnmuhammadasghar@gmail.com"
     className="group relative"
   >
-    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-400 to-cyan-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
 
     <div className="
       relative
@@ -575,12 +582,12 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
       backdrop-blur-xl
       transition-all duration-500
       group-hover:-translate-y-2
-      group-hover:border-emerald-400/60
-      group-hover:shadow-[0_0_30px_rgba(16,185,129,.35)]
+      group-hover:border-violet-400/60
+      group-hover:shadow-[0_0_30px_rgba(139,92,246,.35)]
     ">
       <Mail
         size={24}
-        className="transition-all duration-500 group-hover:scale-125 group-hover:text-emerald-400"
+        className="transition-all duration-500 group-hover:scale-125 group-hover:text-violet-400"
       />
     </div>
   </Link>
@@ -590,7 +597,7 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
     target="_blank"
     className="group relative"
   >
-    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500 to-violet-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-60" />
 
     <div className="
       relative
@@ -602,10 +609,10 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
       transition-all duration-500
       group-hover:-translate-y-2
       group-hover:rotate-6
-      group-hover:border-orange-400/60
-      group-hover:shadow-[0_0_30px_rgba(249,115,22,.35)]
+      group-hover:border-indigo-400/60
+      group-hover:shadow-[0_0_30px_rgba(99,102,241,.35)]
     ">
-      <SiLeetcode className="text-2xl transition-all duration-500 group-hover:scale-125 group-hover:text-orange-400" />
+      <SiLeetcode className="text-2xl transition-all duration-500 group-hover:scale-125 group-hover:text-indigo-400" />
     </div>
   </Link>
 
@@ -614,7 +621,7 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
         
 
         {/* RIGHT */}
-        <div className="order-1 flex justify-center lg:order-2">
+        <div className="pointer-events-auto order-1 flex justify-center lg:order-2">
           <div
             className="
               relative
@@ -665,8 +672,25 @@ bg-[conic-gradient(from_180deg_at_50%_50%,#3B82F6,#8B5CF6,#06B6D4,#3B82F6)]
         {/* RIGHT end */}
       </div>
     </div>
+
+    {/* Scroll down indicator */}
+    <div className="pointer-events-none absolute inset-x-0 bottom-24 z-[8] hidden justify-center sm:flex lg:bottom-20">
+      <Link
+        href="#about"
+        aria-label="Scroll down for more information"
+        className="group pointer-events-auto flex flex-col items-center gap-2 text-neutral-500 transition-colors hover:text-blue-500 dark:text-neutral-400 dark:hover:text-cyan-400"
+      >
+        <span className="text-xs font-medium uppercase tracking-widest">
+          Scroll Down
+        </span>
+        <span className="flex h-9 w-6 items-start justify-center rounded-full border border-neutral-400/60 p-1.5 transition-colors group-hover:border-blue-400 dark:border-neutral-600/60">
+          <span className="h-2 w-1 animate-bounce rounded-full bg-current" />
+        </span>
+      </Link>
+    </div>
+
     {/* Logo Loop Bottom */}
-<div className="absolute bottom-0 left-0 right-0 z-20 pb-8">
+<div className="absolute bottom-0 left-0 right-0 z-[8] pb-8">
   <div className="mx-auto max-w-full">
     <LogoLoop
       logos={logos}

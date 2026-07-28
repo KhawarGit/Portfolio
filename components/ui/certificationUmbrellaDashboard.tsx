@@ -5911,39 +5911,39 @@ const brandThemes: Record<
   { aura: string; rim: string; text: string; shadow: string; color: string }
 > = {
   cloud: {
+    aura: "from-blue-400 to-blue-600",
+    rim: "border-blue-500/30",
+    text: "text-blue-400",
+    shadow: "rgba(59, 130, 246, 0.4)",
+    color: "#3b82f6",
+  },
+  frontend: {
+    aura: "from-indigo-400 to-indigo-600",
+    rim: "border-indigo-500/30",
+    text: "text-indigo-400",
+    shadow: "rgba(99, 102, 241, 0.4)",
+    color: "#6366f1",
+  },
+  google: {
+    aura: "from-cyan-400 to-cyan-600",
+    rim: "border-cyan-500/30",
+    text: "text-cyan-400",
+    shadow: "rgba(34, 211, 238, 0.4)",
+    color: "#22d3ee",
+  },
+  microsoft: {
     aura: "from-sky-500 to-blue-600",
     rim: "border-sky-500/30",
     text: "text-sky-400",
     shadow: "rgba(14, 165, 233, 0.4)",
     color: "#0ea5e9",
   },
-  frontend: {
-    aura: "from-pink-500 to-purple-600",
-    rim: "border-pink-500/30",
-    text: "text-pink-400",
-    shadow: "rgba(236, 72, 153, 0.4)",
-    color: "#ec4899",
-  },
-  google: {
-    aura: "from-emerald-500 to-green-600",
-    rim: "border-emerald-500/30",
-    text: "text-emerald-400",
-    shadow: "rgba(16, 185, 129, 0.4)",
-    color: "#10b981",
-  },
-  microsoft: {
-    aura: "from-blue-600 to-indigo-700",
-    rim: "border-blue-500/30",
-    text: "text-blue-400",
-    shadow: "rgba(37, 99, 235, 0.4)",
-    color: "#2563eb",
-  },
   programming: {
-    aura: "from-amber-400 to-orange-500",
-    rim: "border-amber-500/30",
-    text: "text-amber-400",
-    shadow: "rgba(245, 158, 11, 0.4)",
-    color: "#f59e0b",
+    aura: "from-violet-400 to-violet-600",
+    rim: "border-violet-500/30",
+    text: "text-violet-400",
+    shadow: "rgba(139, 92, 246, 0.4)",
+    color: "#8b5cf6",
   },
   networking: {
     aura: "from-teal-400 to-cyan-600",
@@ -5953,7 +5953,7 @@ const brandThemes: Record<
     color: "#14b8a6",
   },
   database: {
-    aura: "from-violet-500 to-fuchsia-600",
+    aura: "from-violet-500 to-blue-600",
     rim: "border-violet-500/30",
     text: "text-violet-400",
     shadow: "rgba(139, 92, 246, 0.4)",
@@ -6022,8 +6022,8 @@ export default function CertificationUmbrellaDashboard() {
     const finalScore = Math.min(Math.round(score), 100);
 
     let rating = "Good";
-    let colorClass = "text-amber-400";
-    if (finalScore >= 90) { rating = "Excellent"; colorClass = "text-emerald-400"; }
+    let colorClass = "text-violet-400";
+    if (finalScore >= 90) { rating = "Excellent"; colorClass = "text-blue-400"; }
     else if (finalScore >= 80) { rating = "Very Good"; colorClass = "text-cyan-400"; }
 
     return { score: finalScore, rating, colorClass };
@@ -6307,13 +6307,13 @@ function OverviewTab({ allCerts, issuersCount, skillsCount, scoreMetrics, setSel
                       <div className="space-y-1">
                         <div className="flex justify-between text-[10px] text-neutral-400">
                           <span>Skill Concentration Density</span>
-                          <span className="font-mono font-bold text-amber-400">{activeCategory.skillDensity}</span>
+                          <span className="font-mono font-bold text-cyan-400">{activeCategory.skillDensity}</span>
                         </div>
                         <div className="relative h-1.5 w-full rounded-full bg-neutral-900 overflow-hidden">
-                          <motion.div 
+                          <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${Math.min((parseFloat(activeCategory.skillDensity) / 6) * 100, 100)}%` }}
-                            className="h-full bg-gradient-to-r from-amber-500 via-orange-400 to-amber-400"
+                            className="h-full bg-gradient-to-r from-violet-500 via-blue-400 to-cyan-400"
                           />
                         </div>
                       </div>

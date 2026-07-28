@@ -168,6 +168,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import { isLowPowerDevice } from "@/hooks/useLowPowerMode";
 
 export type ColorScheme = "blue" | "teal" | "purple" | "white";
 export type Variant = "cube" | "wave";
@@ -272,9 +273,13 @@ export default function ParticleBackground({
   }
 
   function effectiveCount() {
-    // Automatically halve particle count on mobile for performance
+    // Automatically thin the particle count on mobile and low-power
+    // devices — halved for one, quartered if both apply.
     const base = stateRef.current.count;
-    return isMobile() ? Math.floor(base / 2) : base;
+    let count = base;
+    if (isMobile()) count = Math.floor(count / 2);
+    if (isLowPowerDevice()) count = Math.floor(count / 2);
+    return Math.max(count, 12);
   }
 
   function getColors() {
@@ -408,6 +413,8 @@ export default function ParticleBackground({
     }
   }
 
+  const isVisibleRef = useRef(true);
+
   const animate = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -423,7 +430,9 @@ export default function ParticleBackground({
     if (s.variant === "cube") drawCube(ctx);
     else drawWave(ctx);
 
-    s.raf = requestAnimationFrame(animate);
+    if (isVisibleRef.current) {
+      s.raf = requestAnimationFrame(animate);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -449,9 +458,34 @@ export default function ParticleBackground({
     const ro = new ResizeObserver(handleResize);
     if (wrapRef.current) ro.observe(wrapRef.current);
 
+    // Pause the animation loop while the canvas is scrolled off-screen
+    // or the tab is backgrounded, instead of rendering forever.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting && document.visibilityState === "visible";
+        isVisibleRef.current = visible;
+        if (visible && !s.raf) {
+          s.raf = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0 }
+    );
+    if (wrapRef.current) io.observe(wrapRef.current);
+
+    const handleVisibilityChange = () => {
+      const visible = document.visibilityState === "visible";
+      isVisibleRef.current = visible;
+      if (visible && !s.raf) {
+        s.raf = requestAnimationFrame(animate);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       cancelAnimationFrame(s.raf);
       ro.disconnect();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [animate, handleResize]);
 

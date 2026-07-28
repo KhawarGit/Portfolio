@@ -256,6 +256,8 @@ const trailCells = useRef<{ x: number; y: number; t: number }[]>([]);
 
     };
 
+    let isActive = true;
+
     const updateAnimation = () => {
       const effectiveSpeed = Math.max(speed, 0.1);
       const wrapX = isHex ? hexHoriz * 2 : squareSize;
@@ -284,7 +286,7 @@ const trailCells = useRef<{ x: number; y: number; t: number }[]>([]);
 
       updateCellOpacities();
       drawGrid();
-      requestRef.current = requestAnimationFrame(updateAnimation);
+      requestRef.current = isActive ? requestAnimationFrame(updateAnimation) : null;
     };
 
 const updateCellOpacities = () => {
@@ -514,11 +516,48 @@ if (
     // canvas.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener("mousemove", handleMouseMove);
 window.addEventListener("mouseleave", handleMouseLeave);
-    requestRef.current = requestAnimationFrame(updateAnimation);
+
+    const startLoop = () => {
+      if (requestRef.current == null) {
+        requestRef.current = requestAnimationFrame(updateAnimation);
+      }
+    };
+    const stopLoop = () => {
+      if (requestRef.current != null) {
+        cancelAnimationFrame(requestRef.current);
+        requestRef.current = null;
+      }
+    };
+
+    // Only animate this (large, page-spanning) grid while it's actually
+    // on screen and the tab is visible — otherwise it burns CPU/GPU
+    // redrawing the whole grid every frame for nothing.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isActive = entry.isIntersecting && document.visibilityState === "visible";
+        if (isActive) startLoop();
+        else stopLoop();
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
+    const handleVisibilityChange = () => {
+      const rect = canvas.getBoundingClientRect();
+      const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+      isActive = document.visibilityState === "visible" && inView;
+      if (isActive) startLoop();
+      else stopLoop();
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    startLoop();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      stopLoop();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     //   canvas.removeEventListener('mousemove', handleMouseMove);
     //   canvas.removeEventListener('mouseleave', handleMouseLeave);
     window.removeEventListener("mousemove", handleMouseMove);

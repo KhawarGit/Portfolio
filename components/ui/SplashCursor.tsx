@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import { isLowPowerDevice } from '@/hooks/useLowPowerMode';
 
 interface ColorRGB {
   r: number;
@@ -92,6 +93,12 @@ export default function SplashCursor({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    // Skip the whole fluid-sim setup (WebGL context, shader compiles,
+    // per-frame multi-pass render loop) on devices likely to struggle
+    // with it — checked once here rather than via a stateful hook, so
+    // there's no window where the heavy setup runs once before a
+    // re-render could cancel it.
+    if (isLowPowerDevice()) return;
 
     let pointers: Pointer[] = [pointerPrototype()];
 
@@ -867,7 +874,9 @@ export default function SplashCursor({
     }
 
     function scaleByPixelRatio(input: number) {
-      const pixelRatio = window.devicePixelRatio || 1;
+      // Cap at 2x so large/high-DPI monitors don't blow up the WebGL
+      // framebuffers (which caused color corruption / dropped frames).
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
       return Math.floor(input * pixelRatio);
     }
 
@@ -1320,7 +1329,7 @@ export default function SplashCursor({
 
 
   return (
-    <div className="fixed top-0 left-0 z-50 pointer-events-none w-full h-full">
+    <div className="fixed inset-0 z-0 mix-blend-screen pointer-events-none w-full h-full">
       <canvas ref={canvasRef} id="fluid" className="w-screen h-screen block"></canvas>
     </div>
   );

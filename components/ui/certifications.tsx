@@ -1652,7 +1652,20 @@ export default function CertificationsPreview() {
   if (!certifications.length) return null;
 
   return (
-    <section className="relative overflow-hidden py-28">
+    // This section's glassmorphism cards (white/10 overlays, white text,
+    // light cyan/violet accents) were built for a dark backdrop and have
+    // no light-mode variants. Force a dark scope here (matching the
+    // standalone /certifications page's own fixed-dark treatment)
+    // instead of theme-ifying every hardcoded color individually.
+    //
+    // The dark scope is local to this section, so `dark:` variants inside
+    // it can't tell what the *site's* real theme is — a plain bg-neutral-950
+    // fill would hard-cut against a light page. Using a transparent-edged
+    // gradient instead sidesteps that: it just reveals whatever's truly
+    // behind it at the seams, correct in either theme without needing to
+    // know which one is active.
+    <section className="dark relative overflow-hidden py-28 text-white">
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,#0a0a0a_9%,#0a0a0a_91%,transparent_100%)]" />
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-violet-500/5 to-blue-500/5 blur-3xl" />
 
@@ -1760,7 +1773,7 @@ export default function CertificationsPreview() {
 
 const themeColors = [
   "from-cyan-400 to-blue-500",
-  "from-violet-400 to-pink-500",
+  "from-violet-400 to-blue-500",
   "from-blue-400 to-cyan-500",
   "from-indigo-400 to-violet-500",
   "from-sky-400 to-cyan-500",
