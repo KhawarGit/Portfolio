@@ -39,13 +39,19 @@ export default function Footer() {
               </h4>
 
               <div className="flex flex-col gap-2 text-sm">
-                {["projects", "about", "skills", "contact"].map((id) => (
+                {[
+                  { label: "Projects", href: "#projects" },
+                  { label: "About", href: "#about" },
+                  { label: "Skills", href: "#skills" },
+                  { label: "Blog", href: "/blog" },
+                  { label: "Contact", href: "#contact" },
+                ].map((link) => (
                   <Link
-                    key={id}
-                    href={`#${id}`}
+                    key={link.href}
+                    href={link.href}
                     className="text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white transition"
                   >
-                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                    {link.label}
                   </Link>
                 ))}
               </div>

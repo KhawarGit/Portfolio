@@ -160,6 +160,7 @@ export default function Navbar() {
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "#contact" },
   ];
 
