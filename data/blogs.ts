@@ -14,13 +14,57 @@ export interface CodeSnippet {
   code: string;
 }
 
+export interface SequenceActor {
+  id: string;
+  label: string;
+  icon?: string;
+}
+
+export interface SequenceStep {
+  from: string;
+  to: string;
+  label: string;
+  description?: string;
+  /** Dashed "return" style arrow instead of a solid "call" arrow. */
+  isReturn?: boolean;
+}
+
+export interface BranchItem {
+  id: string;
+  label: string;
+  description: string;
+}
+
+export interface Branch {
+  id: string;
+  label: string;
+  icon?: string;
+  description: string;
+  items: BranchItem[];
+}
+
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
   | { type: "list"; items: string[]; ordered?: boolean }
   | { type: "code"; snippet: CodeSnippet }
   | { type: "callout"; variant: "info" | "warning" | "tip"; text: string }
-  | { type: "tree"; title: string; description?: string; root: TreeNode };
+  | { type: "tree"; title: string; description?: string; root: TreeNode }
+  | {
+      type: "sequence";
+      title: string;
+      description?: string;
+      actors: SequenceActor[];
+      steps: SequenceStep[];
+    }
+  | {
+      type: "branch";
+      title: string;
+      description?: string;
+      root: string;
+      rootIcon?: string;
+      branches: Branch[];
+    };
 
 export interface BlogPost {
   slug: string;
@@ -170,122 +214,106 @@ export const blogPosts: BlogPost[] = [
         text: "Scrum is a lightweight framework for delivering complex work in short, inspectable increments instead of one long bet. It has exactly three roles, five events, and three artifacts — everything else you've seen called \"Scrum\" is a company's own process bolted on top.",
       },
       {
-        type: "tree",
+        type: "branch",
         title: "Scrum's Structure",
-        description: "Three branches, each doing a distinct job. Click to expand.",
-        root: {
-          id: "scrum",
-          label: "Scrum Framework",
-          icon: "LayoutGrid",
-          description:
-            "A framework, not a methodology — it defines the minimum structure needed to inspect and adapt work regularly.",
-          children: [
-            {
-              id: "roles",
-              label: "Roles (Accountabilities)",
-              icon: "Users",
-              description:
-                "Three accountabilities, not job titles. The same person can hold different ones on different teams.",
-              children: [
-                {
-                  id: "po",
-                  label: "Product Owner",
-                  icon: "Target",
-                  description:
-                    "Owns the Product Backlog and maximizes the value of the work the team does. One person, not a committee — otherwise priorities blur.",
-                },
-                {
-                  id: "sm",
-                  label: "Scrum Master",
-                  icon: "ShieldCheck",
-                  description:
-                    "Accountable for the team's effectiveness and for coaching adherence to Scrum. Removes impediments; doesn't assign tasks.",
-                },
-                {
-                  id: "dev",
-                  label: "Developers",
-                  icon: "Code2",
-                  description:
-                    "The people who do the work of turning backlog items into a usable Increment each Sprint. Self-managing on how the work gets done.",
-                },
-              ],
-            },
-            {
-              id: "events",
-              label: "Events",
-              icon: "CalendarClock",
-              description:
-                "A fixed cadence of five events that create regular inspection points — the whole reason Scrum catches problems early instead of at the end.",
-              children: [
-                {
-                  id: "sprint",
-                  label: "The Sprint",
-                  icon: "Timer",
-                  description:
-                    "A time-boxed container (usually 1-4 weeks) for all the other events. Nothing changes that would endanger the Sprint Goal once it starts.",
-                },
-                {
-                  id: "planning",
-                  label: "Sprint Planning",
-                  icon: "ListChecks",
-                  description:
-                    "The team commits to a Sprint Goal and selects the backlog items that support it. Answers 'why' and 'what,' then sketches 'how.'",
-                },
-                {
-                  id: "daily",
-                  label: "Daily Scrum",
-                  icon: "Sunrise",
-                  description:
-                    "A 15-minute daily check on progress toward the Sprint Goal. Not a status report to a manager — a sync between the people doing the work.",
-                },
-                {
-                  id: "review",
-                  label: "Sprint Review",
-                  icon: "Eye",
-                  description:
-                    "Inspect the Increment with stakeholders, gather feedback, and adapt the Product Backlog. This is a working session, not a slide deck.",
-                },
-                {
-                  id: "retro",
-                  label: "Sprint Retrospective",
-                  icon: "RefreshCcw",
-                  description:
-                    "The team inspects itself — process, tools, relationships — and plans concrete improvements for the next Sprint.",
-                },
-              ],
-            },
-            {
-              id: "artifacts",
-              label: "Artifacts",
-              icon: "Layers",
-              description:
-                "Each artifact carries a commitment that keeps it honest: a definition of what 'done' or 'value' actually means.",
-              children: [
-                {
-                  id: "backlog",
-                  label: "Product Backlog",
-                  icon: "ListOrdered",
-                  description:
-                    "The single ordered list of everything that might improve the product. Committed to via the Product Goal.",
-                },
-                {
-                  id: "sprintbacklog",
-                  label: "Sprint Backlog",
-                  icon: "ClipboardList",
-                  description:
-                    "The Sprint Goal, plus the backlog items selected for it, plus a plan for delivering them. Owned entirely by the Developers.",
-                },
-                {
-                  id: "increment",
-                  label: "Increment",
-                  icon: "PackageCheck",
-                  description:
-                    "A concrete, usable step toward the product goal, held to a Definition of Done — the team's own bar for what 'shippable' means.",
-                },
-              ],
-            },
-          ],
-        },
+        description: "Three branches, each doing a distinct job. Click a card to focus it.",
+        root: "Scrum Framework",
+        rootIcon: "LayoutGrid",
+        branches: [
+          {
+            id: "roles",
+            label: "Roles (Accountabilities)",
+            icon: "Users",
+            description:
+              "Three accountabilities, not job titles. The same person can hold different ones on different teams.",
+            items: [
+              {
+                id: "po",
+                label: "Product Owner",
+                description:
+                  "Owns the Product Backlog and maximizes the value of the work the team does. One person, not a committee — otherwise priorities blur.",
+              },
+              {
+                id: "sm",
+                label: "Scrum Master",
+                description:
+                  "Accountable for the team's effectiveness and for coaching adherence to Scrum. Removes impediments; doesn't assign tasks.",
+              },
+              {
+                id: "dev",
+                label: "Developers",
+                description:
+                  "The people who do the work of turning backlog items into a usable Increment each Sprint. Self-managing on how the work gets done.",
+              },
+            ],
+          },
+          {
+            id: "events",
+            label: "Events",
+            icon: "CalendarClock",
+            description:
+              "A fixed cadence of five events that create regular inspection points — the whole reason Scrum catches problems early instead of at the end.",
+            items: [
+              {
+                id: "sprint",
+                label: "The Sprint",
+                description:
+                  "A time-boxed container (usually 1-4 weeks) for all the other events. Nothing changes that would endanger the Sprint Goal once it starts.",
+              },
+              {
+                id: "planning",
+                label: "Sprint Planning",
+                description:
+                  "The team commits to a Sprint Goal and selects the backlog items that support it. Answers 'why' and 'what,' then sketches 'how.'",
+              },
+              {
+                id: "daily",
+                label: "Daily Scrum",
+                description:
+                  "A 15-minute daily check on progress toward the Sprint Goal. Not a status report to a manager — a sync between the people doing the work.",
+              },
+              {
+                id: "review",
+                label: "Sprint Review",
+                description:
+                  "Inspect the Increment with stakeholders, gather feedback, and adapt the Product Backlog. This is a working session, not a slide deck.",
+              },
+              {
+                id: "retro",
+                label: "Sprint Retrospective",
+                description:
+                  "The team inspects itself — process, tools, relationships — and plans concrete improvements for the next Sprint.",
+              },
+            ],
+          },
+          {
+            id: "artifacts",
+            label: "Artifacts",
+            icon: "Layers",
+            description:
+              "Each artifact carries a commitment that keeps it honest: a definition of what 'done' or 'value' actually means.",
+            items: [
+              {
+                id: "backlog",
+                label: "Product Backlog",
+                description:
+                  "The single ordered list of everything that might improve the product. Committed to via the Product Goal.",
+              },
+              {
+                id: "sprintbacklog",
+                label: "Sprint Backlog",
+                description:
+                  "The Sprint Goal, plus the backlog items selected for it, plus a plan for delivering them. Owned entirely by the Developers.",
+              },
+              {
+                id: "increment",
+                label: "Increment",
+                description:
+                  "A concrete, usable step toward the product goal, held to a Definition of Done — the team's own bar for what 'shippable' means.",
+              },
+            ],
+          },
+        ],
       },
       { type: "heading", text: "What actually goes wrong" },
       {
@@ -321,60 +349,46 @@ export const blogPosts: BlogPost[] = [
         text: "Most API security failures aren't exotic exploits — they're a missing check that should have run before the handler executed. Every request that reaches a protected route in a well-built Next.js app should pass through the same pipeline, in the same order, every time.",
       },
       {
-        type: "tree",
+        type: "sequence",
         title: "The Request Lifecycle",
-        description: "Every incoming request to a protected route flows through this chain.",
-        root: {
-          id: "request",
-          label: "Incoming Request",
-          icon: "Globe",
-          description: "A client calls an API route with a bearer token or session cookie attached.",
-          children: [
-            {
-              id: "auth-mw",
-              label: "Authentication Middleware",
-              icon: "KeyRound",
-              description:
-                "Verifies the token/session is genuine and not expired. Answers only 'who is this?' — nothing about permissions yet.",
-              children: [
-                {
-                  id: "authz",
-                  label: "Authorization Check",
-                  icon: "ShieldCheck",
-                  description:
-                    "Given a known, verified identity, checks whether that identity is allowed to perform this specific action on this specific resource.",
-                  children: [
-                    {
-                      id: "validate",
-                      label: "Input Validation",
-                      icon: "CheckCircle2",
-                      description:
-                        "Parses and validates the request body/params against a strict schema before any business logic sees it.",
-                      children: [
-                        {
-                          id: "handler",
-                          label: "Route Handler",
-                          icon: "Server",
-                          description:
-                            "Only now does business logic run — on a request that's authenticated, authorized, and shaped exactly as expected.",
-                          children: [
-                            {
-                              id: "response",
-                              label: "Response",
-                              icon: "Send",
-                              description:
-                                "Return only the fields the caller is entitled to see — authorization applies to responses too, not just access.",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
+        description: "Every incoming request to a protected route flows through this chain, click a step for detail.",
+        actors: [
+          { id: "client", label: "Client", icon: "Globe" },
+          { id: "middleware", label: "Middleware", icon: "KeyRound" },
+          { id: "authz", label: "Authorization", icon: "ShieldCheck" },
+          { id: "handler", label: "Route Handler", icon: "Server" },
+        ],
+        steps: [
+          {
+            from: "client",
+            to: "middleware",
+            label: "Request + Bearer token",
+            description:
+              "A client calls an API route with a bearer token or session cookie attached.",
+          },
+          {
+            from: "middleware",
+            to: "authz",
+            label: "Verified identity (userId, role)",
+            description:
+              "Verifies the token/session is genuine and not expired, then forwards the confirmed identity onward. Answers only 'who is this?' — nothing about permissions yet.",
+          },
+          {
+            from: "authz",
+            to: "handler",
+            label: "Authorized + validated request",
+            description:
+              "Given a known, verified identity, checks whether it's allowed to perform this specific action on this resource, then validates the request body against a strict schema before any business logic sees it.",
+          },
+          {
+            from: "handler",
+            to: "client",
+            label: "Response",
+            isReturn: true,
+            description:
+              "Business logic runs only now, on a request that's authenticated, authorized, and shaped exactly as expected — and returns only the fields the caller is entitled to see.",
+          },
+        ],
       },
       { type: "heading", text: "Authentication middleware" },
       {
@@ -499,62 +513,55 @@ export async function PATCH(
         text: "REST and GraphQL solve the same underlying problem — letting a client get data from a server — with opposite defaults. REST gives you fixed shapes at many URLs; GraphQL gives you one URL and lets the client shape the response. Picking between them is a question about your clients, not about which is newer.",
       },
       {
-        type: "tree",
+        type: "branch",
         title: "Two Philosophies",
-        root: {
-          id: "api-styles",
-          label: "API Style",
-          icon: "Network",
-          description: "Two different answers to 'how much control should the client have over the response shape?'",
-          children: [
-            {
-              id: "rest",
-              label: "REST",
-              icon: "Server",
-              description:
-                "Resources exposed as URLs, verbs (GET/POST/PATCH/DELETE) express intent, server decides the response shape per endpoint.",
-              children: [
-                {
-                  id: "rest-strength",
-                  label: "Strong on",
-                  icon: "ThumbsUp",
-                  description:
-                    "Caching (HTTP caches understand it natively), simplicity, tooling maturity, and predictable performance per endpoint.",
-                },
-                {
-                  id: "rest-weak",
-                  label: "Weak on",
-                  icon: "ThumbsDown",
-                  description:
-                    "Over-fetching (getting fields you don't need) and under-fetching (needing several round trips to assemble one screen).",
-                },
-              ],
-            },
-            {
-              id: "graphql",
-              label: "GraphQL",
-              icon: "Boxes",
-              description:
-                "One endpoint, a strongly typed schema, and queries that let the client ask for exactly the fields it needs across multiple resources at once.",
-              children: [
-                {
-                  id: "gql-strength",
-                  label: "Strong on",
-                  icon: "ThumbsUp",
-                  description:
-                    "Flexible, precise data fetching for complex UIs (dashboards, mobile apps on metered connections) and a strong contract via the schema.",
-                },
-                {
-                  id: "gql-weak",
-                  label: "Weak on",
-                  icon: "ThumbsDown",
-                  description:
-                    "HTTP-level caching (everything's a POST to one URL), query complexity/cost control, and a steeper operational learning curve.",
-                },
-              ],
-            },
-          ],
-        },
+        description: "Two different answers to 'how much control should the client have over the response shape?'",
+        root: "API Style",
+        rootIcon: "Network",
+        branches: [
+          {
+            id: "rest",
+            label: "REST",
+            icon: "Server",
+            description:
+              "Resources exposed as URLs, verbs (GET/POST/PATCH/DELETE) express intent, server decides the response shape per endpoint.",
+            items: [
+              {
+                id: "rest-strength",
+                label: "Strong on",
+                description:
+                  "Caching (HTTP caches understand it natively), simplicity, tooling maturity, and predictable performance per endpoint.",
+              },
+              {
+                id: "rest-weak",
+                label: "Weak on",
+                description:
+                  "Over-fetching (getting fields you don't need) and under-fetching (needing several round trips to assemble one screen).",
+              },
+            ],
+          },
+          {
+            id: "graphql",
+            label: "GraphQL",
+            icon: "Boxes",
+            description:
+              "One endpoint, a strongly typed schema, and queries that let the client ask for exactly the fields it needs across multiple resources at once.",
+            items: [
+              {
+                id: "gql-strength",
+                label: "Strong on",
+                description:
+                  "Flexible, precise data fetching for complex UIs (dashboards, mobile apps on metered connections) and a strong contract via the schema.",
+              },
+              {
+                id: "gql-weak",
+                label: "Weak on",
+                description:
+                  "HTTP-level caching (everything's a POST to one URL), query complexity/cost control, and a steeper operational learning curve.",
+              },
+            ],
+          },
+        ],
       },
       { type: "heading", text: "The same request, both ways" },
       {
@@ -858,60 +865,53 @@ CMD ["node", "server.js"]`,
         text: "A monolith ships as one deployable unit; microservices split a system into independently deployable services that talk over a network. Every advantage on one side is a disadvantage on the other — this is a genuine trade-off, not a maturity ladder.",
       },
       {
-        type: "tree",
+        type: "branch",
         title: "Two Architectures, Opposite Trade-offs",
-        root: {
-          id: "architecture",
-          label: "System Architecture",
-          icon: "Layers",
-          description: "Both are legitimate defaults — the right one depends on team size and where your bottleneck actually is.",
-          children: [
-            {
-              id: "monolith",
-              label: "Monolith",
-              icon: "Package",
-              description: "One codebase, one deployment, one database (usually). Simple until it isn't.",
-              children: [
-                {
-                  id: "mono-pro",
-                  label: "Where it wins",
-                  icon: "ThumbsUp",
-                  description:
-                    "Simple local development, easy transactions across the whole data model, one thing to deploy and monitor, and no network latency between components.",
-                },
-                {
-                  id: "mono-con",
-                  label: "Where it hurts",
-                  icon: "ThumbsDown",
-                  description:
-                    "Scaling means scaling everything, one team's bug can take down an unrelated feature, and the codebase can become hard to onboard into as it grows.",
-                },
-              ],
-            },
-            {
-              id: "microservices",
-              label: "Microservices",
-              icon: "Boxes",
-              description: "Many small services, each independently deployable and (ideally) independently owned.",
-              children: [
-                {
-                  id: "micro-pro",
-                  label: "Where it wins",
-                  icon: "ThumbsUp",
-                  description:
-                    "Independent scaling and deployment per service, fault isolation, and teams that can move without stepping on each other's releases.",
-                },
-                {
-                  id: "micro-con",
-                  label: "Where it hurts",
-                  icon: "ThumbsDown",
-                  description:
-                    "Distributed systems problems appear immediately — network failures, eventual consistency, distributed tracing, and a much heavier DevOps burden.",
-                },
-              ],
-            },
-          ],
-        },
+        description: "Both are legitimate defaults — the right one depends on team size and where your bottleneck actually is.",
+        root: "System Architecture",
+        rootIcon: "Layers",
+        branches: [
+          {
+            id: "monolith",
+            label: "Monolith",
+            icon: "Package",
+            description: "One codebase, one deployment, one database (usually). Simple until it isn't.",
+            items: [
+              {
+                id: "mono-pro",
+                label: "Where it wins",
+                description:
+                  "Simple local development, easy transactions across the whole data model, one thing to deploy and monitor, and no network latency between components.",
+              },
+              {
+                id: "mono-con",
+                label: "Where it hurts",
+                description:
+                  "Scaling means scaling everything, one team's bug can take down an unrelated feature, and the codebase can become hard to onboard into as it grows.",
+              },
+            ],
+          },
+          {
+            id: "microservices",
+            label: "Microservices",
+            icon: "Boxes",
+            description: "Many small services, each independently deployable and (ideally) independently owned.",
+            items: [
+              {
+                id: "micro-pro",
+                label: "Where it wins",
+                description:
+                  "Independent scaling and deployment per service, fault isolation, and teams that can move without stepping on each other's releases.",
+              },
+              {
+                id: "micro-con",
+                label: "Where it hurts",
+                description:
+                  "Distributed systems problems appear immediately — network failures, eventual consistency, distributed tracing, and a much heavier DevOps burden.",
+              },
+            ],
+          },
+        ],
       },
       {
         type: "callout",
@@ -952,59 +952,44 @@ CMD ["node", "server.js"]`,
         text: "A JWT is three Base64URL-encoded parts — header, payload, and signature — joined with dots. Anyone can decode and read the payload; what makes it trustworthy is the signature, which only the server (holding the secret or private key) could have produced.",
       },
       {
-        type: "tree",
+        type: "sequence",
         title: "The JWT Auth Flow",
-        root: {
-          id: "login",
-          label: "User Logs In",
-          icon: "LogIn",
-          description: "Client submits credentials to a login endpoint.",
-          children: [
-            {
-              id: "sign",
-              label: "Server Signs a Token",
-              icon: "KeyRound",
-              description:
-                "After verifying the password, the server creates a JWT containing claims (user id, role, expiry) and signs it with a secret key.",
-              children: [
-                {
-                  id: "store",
-                  label: "Client Stores the Token",
-                  icon: "Cookie",
-                  description:
-                    "Ideally in an HttpOnly, Secure cookie — never in localStorage, which any injected script can read.",
-                  children: [
-                    {
-                      id: "attach",
-                      label: "Client Attaches It to Requests",
-                      icon: "Paperclip",
-                      description:
-                        "Sent automatically as a cookie, or manually as an Authorization: Bearer header for non-browser clients.",
-                      children: [
-                        {
-                          id: "verify",
-                          label: "Server Verifies the Signature",
-                          icon: "ShieldCheck",
-                          description:
-                            "Recomputes the signature with its secret and checks it matches, plus checks the expiry claim — all without a database lookup.",
-                          children: [
-                            {
-                              id: "access",
-                              label: "Access Granted",
-                              icon: "CheckCircle2",
-                              description:
-                                "The request proceeds with a known, verified identity attached — no session store required.",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
+        description: "A full login-and-verify round trip between two actors — click a step for detail.",
+        actors: [
+          { id: "client", label: "Client", icon: "Globe" },
+          { id: "server", label: "Server", icon: "Server" },
+        ],
+        steps: [
+          {
+            from: "client",
+            to: "server",
+            label: "POST /login { email, password }",
+            description: "Client submits credentials to a login endpoint.",
+          },
+          {
+            from: "server",
+            to: "client",
+            label: "Set-Cookie: signed JWT",
+            isReturn: true,
+            description:
+              "After verifying the password, the server creates a JWT containing claims (user id, role, expiry) and signs it with a secret key — ideally stored as an HttpOnly, Secure cookie, never in localStorage.",
+          },
+          {
+            from: "client",
+            to: "server",
+            label: "GET /api/resource + token",
+            description:
+              "Sent automatically as a cookie, or manually as an Authorization: Bearer header for non-browser clients.",
+          },
+          {
+            from: "server",
+            to: "client",
+            label: "200 OK (verified + authorized)",
+            isReturn: true,
+            description:
+              "Recomputes the signature with its secret and checks it matches, plus checks the expiry claim — all without a database lookup. The request proceeds with a known, verified identity attached, no session store required.",
+          },
+        ],
       },
       { type: "heading", text: "Signing and verifying" },
       {

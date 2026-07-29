@@ -2,6 +2,8 @@ import { Info, TriangleAlert, Lightbulb } from "lucide-react";
 import type { ContentBlock, Accent } from "@/data/blogs";
 import CodeBlock from "@/components/ui/code-block";
 import BlogTree from "@/components/ui/blog-tree";
+import BlogSequence from "@/components/ui/blog-sequence";
+import BlogBranchTree from "@/components/ui/blog-branch-tree";
 
 const CALLOUT_STYLES = {
   info: {
@@ -95,6 +97,31 @@ export default function BlogContent({
                 title={block.title}
                 description={block.description}
                 root={block.root}
+                accent={accent}
+              />
+            );
+
+          case "sequence":
+            return (
+              <BlogSequence
+                key={i}
+                title={block.title}
+                description={block.description}
+                actors={block.actors}
+                steps={block.steps}
+                accent={accent}
+              />
+            );
+
+          case "branch":
+            return (
+              <BlogBranchTree
+                key={i}
+                title={block.title}
+                description={block.description}
+                root={block.root}
+                rootIcon={block.rootIcon}
+                branches={block.branches}
                 accent={accent}
               />
             );
